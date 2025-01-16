@@ -1,0 +1,101 @@
+###
+POST https://api.e-logisticspln.com/user/login
+content-type: application/json
+
+{
+    "username" : "administrator",
+    "password" : "Kiliki@123"
+}
+
+###
+POST https://api.e-logisticspln.com/material/search
+content-type: application/json
+username: administrator
+apikey: FFE00D19-ECB40455-6CF29EED-697C8258-BF627D3C-8BF41CBC-1EC22561-AE100119
+unit_id: 5400
+
+{
+    "normalisasi" : "1030114",
+    "unit" : "5400"
+}
+
+###
+GET https://api.e-logisticspln.com/material/kategori
+
+###
+POST https://api.e-logisticspln.com/material/searchMaterial
+content-type: application/json
+
+{
+    "kategori" : "*",
+    "material" : "*"
+}
+
+###
+POST https://api.e-logisticspln.com/material/detailStockMaterial
+content-type: application/json
+
+{
+    "material_id" : "1030114"
+}
+
+###
+POST https://api.e-logisticspln.com/material/cekGudang
+content-type: application/json
+
+{
+    "normaliasi" : "2050848",
+    "unit" : "5489"
+}
+
+###
+POST https://api.e-logisticspln.com/attb/getData
+content-type: application/json
+username: agung
+apikey: 55B3A4C2-ED535CBE-33C50552-E511138E-A785CE39-9FD56188-A1AC5AFF-E2146ADE
+unit_id: 5400
+
+{
+    "no_attb" : "1000163693"
+}
+
+###
+POST https://api.e-logisticspln.com/material/detailGudang
+content-type: application/json
+
+{
+    "material_id" : "1030114",
+    "unit" : "5400"
+}
+
+###
+GET https://api.e-logisticspln.com/master/gudang
+
+###
+GET https://api.e-logisticspln.com/master/statusAttb
+
+###
+GET https://api.e-logisticspln.com/material/fotoDenah/5490/I/1/A
+
+###
+POST https://api.e-logisticspln.com/material/getByLayoutGudang
+content-type: application/json
+
+{
+    "unit" : "*",
+    "gudang" : "*",
+    "no_gudang" : "*",
+    "rak" : "*"
+}
+
+###
+GET https://api.e-logisticspln.com/master/tipeGudang
+
+###
+GET https://api.e-logisticspln.com/master/noGudang
+
+###
+GET https://api.e-logisticspln.com/master/unit
+
+###
+GET https://api.e-logisticspln.com/master/rak
