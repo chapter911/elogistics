@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'u213560616_logistik',
-	'password' => 'RmL#D?1DMd=5',
-	'database' => 'u213560616_logistik',
+	'username' => 'jb48',
+	'password' => 'jb48Jaya321',
+	'database' => 'elog',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
