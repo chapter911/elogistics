@@ -15,9 +15,9 @@
     <link rel="icon" type="image/x-icon" href="<?= site_url(); ?>assets/app_logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <!-- <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
-        rel="stylesheet" />
+        rel="stylesheet" /> -->
 
     <link rel="stylesheet" href="<?= site_url(); ?>assets/vendor/fonts/fontawesome.css" />
     <link rel="stylesheet" href="<?= site_url(); ?>assets/vendor/fonts/tabler-icons.css" />
@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdbpGAqAAAAADUsJ59-iwY0-p_Vlw9sICxJtHrz"></script> -->
-    <script>
+    <!-- <script>
     grecaptcha.ready(function() {
         grecaptcha.execute('6LdbpGAqAAAAADUsJ59-iwY0-p_Vlw9sICxJtHrz', {
             action: 'submit'
@@ -57,7 +57,7 @@
             document.getElementById("token").value = token;
         });
     });
-    </script>
+    </script> -->
 </head>
 
 <body oncopy="return false" oncut="return false">
