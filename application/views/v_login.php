@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/libs/animate-css/animate.css" />
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/libs/sweetalert2/sweetalert2.css" />
 
-    <script src="https://www.google.com/recaptcha/api.js?render=6LdbpGAqAAAAADUsJ59-iwY0-p_Vlw9sICxJtHrz"></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdbpGAqAAAAADUsJ59-iwY0-p_Vlw9sICxJtHrz"></script> -->
     <script>
     grecaptcha.ready(function() {
         grecaptcha.execute('6LdbpGAqAAAAADUsJ59-iwY0-p_Vlw9sICxJtHrz', {
