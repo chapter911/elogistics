@@ -1,20 +1,4 @@
-<FilesMatch ".(eot|ttf|otf|woff)">
-    Header set Access-Control-Allow-Origin "*"
-</FilesMatch>
-
-<ifModule mod_headers.c>
-    Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
-    Header always set X-Frame-Options "deny"
-    Header setifempty Referrer-Policy: same-origin
-    Header set X-XSS-Protection "1; mode=block"
-    Header set X-Permitted-Cross-Domain-Policies "none"
-    Header set Referrer-Policy "no-referrer"
-    Header set X-Content-Type-Options: nosniff
-    Header set X-Frame-Options "SAMEORIGIN"
-</ifModule>
-
-RewriteEngine On
+RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
-
+RewriteRule ^(.*)$ index.php?/$1 [L]
