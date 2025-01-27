@@ -24,6 +24,8 @@ class C_Login extends CI_Controller {
 	}
 
 	public function auth(){
+		echo "123";
+		die();
 		$username = $this->input->post('username', true);
 		$password = $this->input->post('password', true);
 
