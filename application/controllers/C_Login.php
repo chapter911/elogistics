@@ -49,40 +49,40 @@ class C_Login extends CI_Controller {
 		// 	$this->session->set_flashdata('message', 'Mohon Coba Lagi');
 		// 	redirect("C_Login");
 		// } else {
-			$cek = $this->M_AllFunction->Where('vw_user', "username = '$username'");
+		$cek = $this->M_AllFunction->Where('vw_user', "username = '$username'");
 
-			if(count($cek) == 0){
+		if(count($cek) == 0){
+			$insert['is_logged_in'] = 0;
+			$this->M_AllFunction->Insert('trn_login_log', $insert);
+			$this->session->set_flashdata('message', 'username / password Anda salah');
+			redirect('C_Login');
+		} else {
+			if($cek[0]->is_active == 0){
+				$insert['is_logged_in'] = 0;
+				$this->M_AllFunction->Insert('trn_login_log', $insert);
+				$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
+				redirect('C_Login');
+			}
+			if(password_verify($password, $cek[0]->password)){
+				$insert['is_logged_in'] = 1;
+				$this->M_AllFunction->Insert('trn_login_log', $insert);
+
+				$this->session->set_userdata('username', $cek[0]->username);
+				$this->session->set_userdata('group_name', $cek[0]->group_name);
+				$this->session->set_userdata('group_id', $cek[0]->group_id);
+				$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
+				$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
+				$this->session->set_userdata('unit_id', $cek[0]->unit_id);
+				$this->session->set_userdata('unit_name', $cek[0]->unit_name);
+				redirect('C_Stock');
+			} else {
 				$insert['is_logged_in'] = 0;
 				$this->M_AllFunction->Insert('trn_login_log', $insert);
 				$this->session->set_flashdata('message', 'username / password Anda salah');
-				redirect("C_Login");
-			} else {
-				if($cek[0]->is_active == 0){
-					$insert['is_logged_in'] = 0;
-					$this->M_AllFunction->Insert('trn_login_log', $insert);
-					$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
-					redirect("C_Login");
-				}
-				if(password_verify($password, $cek[0]->password)){
-					$insert['is_logged_in'] = 1;
-					$this->M_AllFunction->Insert('trn_login_log', $insert);
-
-					$this->session->set_userdata('username', $cek[0]->username);
-					$this->session->set_userdata('group_name', $cek[0]->group_name);
-					$this->session->set_userdata('group_id', $cek[0]->group_id);
-					$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
-					$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
-					$this->session->set_userdata('unit_id', $cek[0]->unit_id);
-					$this->session->set_userdata('unit_name', $cek[0]->unit_name);
-					redirect("C_Stock");
-				} else {
-					$insert['is_logged_in'] = 0;
-					$this->M_AllFunction->Insert('trn_login_log', $insert);
-					$this->session->set_flashdata('message', 'username / password Anda salah');
-					redirect("C_Login");
-				}
-			// }
+				redirect('C_Login');
+			}
 		}
+		// }
 	}
 
 	public function Log(){
