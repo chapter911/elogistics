@@ -21,12 +21,13 @@
             $mail->isSMTP();
             $mail->SMTPDebug = 3;
             $mail->Host = '10.1.2.65';
-            $mail->Port = 25;
+            $mail->Port = "25";
+            $mail->Mailer = "smtp";
             $mail->SMTPAuth = false;
             $mail->Username = 'pusat\helpme';
             $mail->Password = 'Jakarta@321';
-            $mail->setFrom('no-reply@e-logisticspln', 'No-Reply E-Logistics PLN');
-            $mail->addReplyTo('no-reply@e-logisticspln', 'No-Reply E-Logistics PLN');
+            $mail->setFrom('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
+            $mail->addReplyTo('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             foreach ($receiver as $r) {
                 $mail->addAddress($r->email);
             }
