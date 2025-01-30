@@ -43,11 +43,13 @@ class C_WebUser extends CI_Controller {
 	}
 
 	public function index(){
-        $data['data'] = $this->M_AllFunction->Get("vw_user");
-        $data['group'] = $this->M_AllFunction->Where("mst_user_group", "is_active = 1");
-        $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
-        $data['unit'] = $this->M_AllFunction->Get("mst_unit");
-		$this->template->display("webuser/index", $data);
+        // $data['data'] = $this->M_AllFunction->Get("vw_user");
+        // $data['group'] = $this->M_AllFunction->Where("mst_user_group", "is_active = 1");
+        // $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
+        // $data['unit'] = $this->M_AllFunction->Get("mst_unit");
+		// $this->template->display("webuser/index", $data);
+        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'administrator'");
+        $this->sendemail->send("Test", "UJI COBA", $receiver);
 	}
 
     public function getUser(){

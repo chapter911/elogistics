@@ -19,14 +19,14 @@
         function send($title, $message, $receiver){
             $mail = new PHPMailer;
             $mail->isSMTP();
-            $mail->SMTPDebug = 0;
-            $mail->Host = 'smtp.hostinger.com';
-            $mail->Port = 587;
-            $mail->SMTPAuth = true;
-            $mail->Username = 'no-reply@e-logisticspln.com';
-            $mail->Password = 'Kiliki@123';
-            $mail->setFrom('no-reply@e-logisticspln.com', 'No-Reply E-Logistics PLN');
-            $mail->addReplyTo('no-reply@e-logisticspln.com', 'No-Reply E-Logistics PLN');
+            $mail->SMTPDebug = 3;
+            $mail->Host = '10.1.2.65';
+            $mail->Port = 25;
+            $mail->SMTPAuth = false;
+            $mail->Username = 'pusat\helpme';
+            $mail->Password = 'Jakarta@321';
+            $mail->setFrom('no-reply@e-logisticspln', 'No-Reply E-Logistics PLN');
+            $mail->addReplyTo('no-reply@e-logisticspln', 'No-Reply E-Logistics PLN');
             foreach ($receiver as $r) {
                 $mail->addAddress($r->email);
             }
