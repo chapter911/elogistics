@@ -168,7 +168,9 @@ class C_Stock extends CI_Controller
         $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('upload_file')) {
-            $this->session->set_flashdata('flash_failed', 'Format File Tidak Sesuai');
+            $error = array('error' => $this->upload->display_errors());
+            $this->session->set_flashdata('flash_failed', $error['error']);
+            // $this->session->set_flashdata('flash_failed', 'Format File Tidak Sesuai');
             redirect('C_Stock');
         } else {
             $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
