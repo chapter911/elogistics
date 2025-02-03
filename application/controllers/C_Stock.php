@@ -21,7 +21,6 @@ class C_Stock extends CI_Controller
         parent::__construct();
 
         $this->load->model(array("M_AllFunction"));
-        $this->load->library('PHPExcel/IOFactory.php');
 
         if (!$this->session->userdata('username')) {
             redirect('C_Login');
