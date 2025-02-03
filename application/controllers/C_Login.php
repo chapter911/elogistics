@@ -14,8 +14,6 @@ class C_Login extends CI_Controller {
 	}
 
 	public function index(){
-		echo sys_get_temp_dir();
-		die();
 		if($this->session->userdata('username')){
 			redirect("C_Stock");
 		} else {
