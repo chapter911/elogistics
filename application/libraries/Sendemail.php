@@ -19,7 +19,8 @@
         function send($title, $message, $receiver){
             $mail = new PHPMailer;
             $mail->isSMTP();
-            $mail->SMTPDebug = 1;
+            $mail->SMTPDebug = 3;
+            $mail->SMTPSecure = 'tls';
             $mail->Host = '10.1.2.65';
             $mail->Port = "25";
             $mail->Mailer = "smtp";
