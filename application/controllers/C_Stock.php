@@ -257,6 +257,7 @@ class C_Stock extends CI_Controller
 
     function Export(){
         $temp_folder = sys_get_temp_dir();
+        echo '<pre>'; print_r($temp_folder); echo '</pre>';
         die();
         $where = $this->input->post('is_highlight', true) == "1" ? " WHERE is_highlight = 1 " : "";
 
