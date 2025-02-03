@@ -16,12 +16,12 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class C_Stock extends CI_Controller
 {
-
     function __construct()
     {
         parent::__construct();
 
         $this->load->model(array("M_AllFunction"));
+        $this->load->library('PHPExcel/IOFactory.php');
 
         if (!$this->session->userdata('username')) {
             redirect('C_Login');
@@ -257,6 +257,8 @@ class C_Stock extends CI_Controller
     }
 
     function Export(){
+        $temp_folder = sys_get_temp_dir();
+        die();
         $where = $this->input->post('is_highlight', true) == "1" ? " WHERE is_highlight = 1 " : "";
 
         if($this->input->post('kategori_id', true) != "*"){
