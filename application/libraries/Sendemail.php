@@ -19,20 +19,13 @@
         function send($title, $message, $receiver){
             $mail = new PHPMailer;
             $mail->isSMTP();
-            $mail->SMTPDebug = 3;
+            $mail->SMTPDebug = 2;
             $mail->Host = '10.1.2.65';
             $mail->Port = "25";
             $mail->Mailer = "smtp";
             $mail->SMTPAuth = false;
             $mail->Username = 'pusat\divsti.jkt1';
             $mail->Password = 'P@ssw0rd!1';
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
             $mail->setFrom('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             $mail->addReplyTo('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             foreach ($receiver as $r) {
