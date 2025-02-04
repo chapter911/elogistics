@@ -57,7 +57,7 @@ class C_WebUser extends CI_Controller {
 
         $mail->IsSMTP();                                      // set mailer to use SMTP
         $mail->SMTPDebug = "3";  // specify main and backup server
-        $mail->Host = "3";  // specify main and backup server
+        $mail->Host = "10.1.2.65";  // specify main and backup server
         $mail->SMTPAuth = false;                               // turn on SMTP authentication
 
         $mail->Username = "pusat\divsti.jkt1";                            // SMTP username
