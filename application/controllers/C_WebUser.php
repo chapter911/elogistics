@@ -54,27 +54,27 @@ class C_WebUser extends CI_Controller {
         require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
         require_once(APPPATH . 'libraries/mail/class.smtp.php');
 
-        $mail = new PHPMailer();
+        $mail                 = new PHPMailer();
 
-        $mail->IsSMTP();
-        $mail->SMTPDebug = "3";
-        $mail->Host = "10.1.2.65";
-        $mail->Port = "25";
-        $mail->Mailer = "smtp";
-        $mail->SMTPAuth = false;
+        $mail->SMTPDebug      = 3;
+        $mail->Host           = "10.1.2.65";
+        $mail->Port           = "25";
+        $mail->Mailer         = "smtp";
+        $mail->SMTPAuth       = false;
 
-        $mail->Username = "pusat\helpme";
-        $mail->Password = "Jakarta@321";
+        $mail->Username       = "pusat\helpme";
+        $mail->Password       = "Jakarta@321";
 
-        $mail->From = "Helpme@pln.co.id";
-        $mail->FromName = "Helpme - DIVSTI JKT 1";
+        $mail->From           = "Helpme@pln.co.id";
+        $mail->FromName       = "Helpme - DIVSTI JKT 1";
+        $mail->WordWrap       = 50;
+
+        $mail->Subject        = "Here is the subject";
+        $mail->Body           = "This is the HTML message body <b>in bold!</b>";
+        $mail->AltBody        = "This is the body in plain text for non-HTML mail clients";
+
         $mail->AddAddress("teguh.kurniawan@pln.co.id");
-        $mail->WordWrap = 50;
         $mail->IsHTML(true);
-
-        $mail->Subject = "Here is the subject";
-        $mail->Body = "This is the HTML message body <b>in bold!</b>";
-        $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
 
         if(!$mail->Send())
         {
