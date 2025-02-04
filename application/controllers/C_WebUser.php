@@ -75,6 +75,8 @@ class C_WebUser extends CI_Controller {
 
         $mail->AddAddress("teguh.kurniawan@pln.co.id");
         $mail->IsHTML(true);
+        echo '<pre>'; print_r($mail); echo '</pre>';
+        die();
 
         if(!$mail->Send())
         {
