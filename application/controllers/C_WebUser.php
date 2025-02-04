@@ -63,8 +63,8 @@ class C_WebUser extends CI_Controller {
         $mail->Username = "pusat\divsti.jkt1";                            // SMTP username
         $mail->Password = "P@ssw0rd!1";                            // SMTP password
 
-        $mail->From = "no-reply@pln.co.id";
-        $mail->FromName = "No-Reply E-Logistics PLN";
+        $mail->From = "Helpme@pln.co.id";
+        $mail->FromName = "Helpme - DIVSTI JKT 1";
         // $mail->AddAddress("josh@example.net", "Josh Adams");
 
         $mail->AddAddress("agung.justik@gmail.com");              // name is optional
