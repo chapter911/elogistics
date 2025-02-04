@@ -51,8 +51,8 @@ class C_WebUser extends CI_Controller {
         // $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
         // $this->sendemail->send("Test", "UJI COBA", $receiver);
 
-        require APPPATH . 'libraries/mail/class.phpmailer.php';
-        require APPPATH . 'libraries/mail/class.smtp.php';
+        require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
+        require_once(APPPATH . 'libraries/mail/class.smtp.php');
 
         $mail = new PHPMailer();
 
@@ -63,8 +63,8 @@ class C_WebUser extends CI_Controller {
         $mail->Mailer = "smtp";
         $mail->SMTPAuth = false;
 
-        $mail->Username = "pusat\divsti.jkt1";
-        $mail->Password = "P@ssw0rd!1";
+        $mail->Username = "pusat\helpme";
+        $mail->Password = "Jakarta@321";
 
         $mail->From = "Helpme@pln.co.id";
         $mail->FromName = "Helpme - DIVSTI JKT 1";
