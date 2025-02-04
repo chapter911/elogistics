@@ -55,26 +55,21 @@ class C_WebUser extends CI_Controller {
 
         $mail = new PHPMailer();
 
-        $mail->IsSMTP();                                      // set mailer to use SMTP
-        $mail->SMTPDebug = "3";  // specify main and backup server
-        $mail->Host = "10.1.2.65";  // specify main and backup server
-        $mail->SMTPAuth = false;                               // turn on SMTP authentication
+        $mail->IsSMTP();
+        $mail->SMTPDebug = "3";
+        $mail->Host = "10.1.2.65";
+        $mail->Port = "25";
+        $mail->Mailer = "smtp";
+        $mail->SMTPAuth = false;
 
-        $mail->Username = "pusat\divsti.jkt1";                            // SMTP username
-        $mail->Password = "P@ssw0rd!1";                            // SMTP password
+        $mail->Username = "pusat\divsti.jkt1";
+        $mail->Password = "P@ssw0rd!1";
 
         $mail->From = "Helpme@pln.co.id";
         $mail->FromName = "Helpme - DIVSTI JKT 1";
-        // $mail->AddAddress("josh@example.net", "Josh Adams");
-
-        $mail->AddAddress("agung.justik@gmail.com");              // name is optional
-        // $mail->AddReplyTo("info@example.com", "Information");
-
-        $mail->WordWrap = 50;                                 // set word wrap to 50 characters
-        // $mail->AddAttachment("/var/tmp/file.tar.gz");         // add attachments
-        // $mail->AddAttachment("/tmp/image.jpg", "new.jpg");    // optional name
-
-        $mail->IsHTML(true);                                  // set email format to HTML
+        $mail->AddAddress("agung.justik@gmail.com");
+        $mail->WordWrap = 50;
+        $mail->IsHTML(true);
 
         $mail->Subject = "Here is the subject";
         $mail->Body = "This is the HTML message body <b>in bold!</b>";
