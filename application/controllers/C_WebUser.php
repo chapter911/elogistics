@@ -62,8 +62,11 @@ class C_WebUser extends CI_Controller {
         $mail->Mailer         = "smtp";
         $mail->SMTPAuth       = false;
 
-        $mail->Username       = "pusat\helpme";
-        $mail->Password       = "Jakarta@321";
+        // $mail->Username       = "pusat\helpme";
+        // $mail->Password       = "Jakarta@321";
+
+        $mail->Username       = "pusat\divsti.jkt1";
+        $mail->Password       = "P@ssw0rd!1";
 
         $mail->From           = "Helpme@pln.co.id";
         $mail->FromName       = "Helpme - DIVSTI JKT 1";
