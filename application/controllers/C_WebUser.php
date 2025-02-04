@@ -60,7 +60,7 @@ class C_WebUser extends CI_Controller {
         $mail->Host           = "10.1.2.65";
         $mail->Port           = "25";
         $mail->Mailer         = "smtp";
-        $mail->SMTPAuth       = false;
+        $mail->SMTPAuth       = true;
 
         // $mail->Username       = "pusat\helpme";
         // $mail->Password       = "Jakarta@321";
