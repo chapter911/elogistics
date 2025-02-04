@@ -67,7 +67,7 @@ class C_WebUser extends CI_Controller {
 
         $mail->From = "Helpme@pln.co.id";
         $mail->FromName = "Helpme - DIVSTI JKT 1";
-        $mail->AddAddress("agung.justik@gmail.com");
+        $mail->AddAddress("teguh.kurniawan@pln.co.id");
         $mail->WordWrap = 50;
         $mail->IsHTML(true);
 
