@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
-require APPPATH . 'libraries/mail/class.phpmailer.php';
-
 /**
  * @property M_AllFunction $M_AllFunction
  * @property Session $session
@@ -52,6 +50,9 @@ class C_WebUser extends CI_Controller {
 		// $this->template->display("webuser/index", $data);
         // $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
         // $this->sendemail->send("Test", "UJI COBA", $receiver);
+
+        require APPPATH . 'libraries/mail/class.phpmailer.php';
+        require APPPATH . 'libraries/mail/class.smtp.php';
 
         $mail = new PHPMailer();
 
