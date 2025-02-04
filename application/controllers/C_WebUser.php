@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
-require 'libraries/mail/class.phpmailer.php';
+require APPPATH . 'libraries/mail/class.phpmailer.php';
 
 /**
  * @property M_AllFunction $M_AllFunction
