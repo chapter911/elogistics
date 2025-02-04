@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
+require("class.phpmailer.php");
 
 /**
  * @property M_AllFunction $M_AllFunction
@@ -48,8 +49,44 @@ class C_WebUser extends CI_Controller {
         // $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
         // $data['unit'] = $this->M_AllFunction->Get("mst_unit");
 		// $this->template->display("webuser/index", $data);
-        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
-        $this->sendemail->send("Test", "UJI COBA", $receiver);
+        // $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
+        // $this->sendemail->send("Test", "UJI COBA", $receiver);
+
+        $mail = new PHPMailer();
+
+        $mail->IsSMTP();                                      // set mailer to use SMTP
+        $mail->SMTPDebug = "3";  // specify main and backup server
+        $mail->Host = "3";  // specify main and backup server
+        $mail->SMTPAuth = false;                               // turn on SMTP authentication
+
+        $mail->Username = "pusat\divsti.jkt1";                            // SMTP username
+        $mail->Password = "P@ssw0rd!1";                            // SMTP password
+
+        $mail->From = "no-reply@pln.co.id";
+        $mail->FromName = "No-Reply E-Logistics PLN";
+        // $mail->AddAddress("josh@example.net", "Josh Adams");
+
+        $mail->AddAddress("agung.justik@gmail.com");              // name is optional
+        // $mail->AddReplyTo("info@example.com", "Information");
+
+        $mail->WordWrap = 50;                                 // set word wrap to 50 characters
+        // $mail->AddAttachment("/var/tmp/file.tar.gz");         // add attachments
+        // $mail->AddAttachment("/tmp/image.jpg", "new.jpg");    // optional name
+
+        $mail->IsHTML(true);                                  // set email format to HTML
+
+        $mail->Subject = "Here is the subject";
+        $mail->Body = "This is the HTML message body <b>in bold!</b>";
+        $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+        if(!$mail->Send())
+        {
+            echo "Message could not be sent. <p>";
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            exit;
+        }
+
+        echo "Message has been sent";
 	}
 
     public function getUser(){
