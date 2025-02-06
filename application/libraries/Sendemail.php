@@ -25,7 +25,7 @@
             $mail->Mailer = "smtp";
             $mail->SMTPAuth = false;
             $mail->Username = 'pusat\divsti.jkt1';
-            $mail->Password = 'P@ssw0rd!1';
+            $mail->Password = 'Pln@202501';
             $mail->setFrom('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             $mail->addReplyTo('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             foreach ($receiver as $r) {
