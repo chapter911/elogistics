@@ -48,45 +48,45 @@ class C_WebUser extends CI_Controller {
         // $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
         // $data['unit'] = $this->M_AllFunction->Get("mst_unit");
 		// $this->template->display("webuser/index", $data);
-        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
-        $this->sendemail->send("Test", "UJI COBA", $receiver);
+        // $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
+        // $this->sendemail->send("Test", "UJI COBA", $receiver);
 
-        // require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
-        // require_once(APPPATH . 'libraries/mail/class.smtp.php');
+        require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
+        require_once(APPPATH . 'libraries/mail/class.smtp.php');
 
-        // $mail                 = new PHPMailer();
+        $mail                 = new PHPMailer();
 
-        // $mail->SMTPDebug      = 3;
-        // $mail->Host           = "10.1.2.65";
-        // $mail->Port           = "25";
-        // $mail->Mailer         = "smtp";
-        // $mail->SMTPAuth       = false;
+        $mail->SMTPDebug      = 3;
+        $mail->Host           = "10.1.2.65";
+        $mail->Port           = "25";
+        $mail->Mailer         = "smtp";
+        $mail->SMTPAuth       = false;
 
-        // // $mail->Username       = "pusat\helpme";
-        // // $mail->Password       = "Jakarta@321";
+        // $mail->Username       = "pusat\helpme";
+        // $mail->Password       = "Jakarta@321";
 
-        // $mail->Username       = "pusat\divsti.jkt1";
-        // $mail->Password       = "Pln@202501";
+        $mail->Username       = "pusat\divsti.jkt1";
+        $mail->Password       = "Pln@202501";
 
-        // $mail->From           = "Helpme@pln.co.id";
-        // $mail->FromName       = "Helpme - DIVSTI JKT 1";
-        // $mail->WordWrap       = 50;
+        $mail->From           = "Helpme@pln.co.id";
+        $mail->FromName       = "Helpme - DIVSTI JKT 1";
+        $mail->WordWrap       = 50;
 
-        // $mail->Subject        = "Here is the subject";
-        // $mail->Body           = "This is the HTML message body <b>in bold!</b>";
-        // $mail->AltBody        = "This is the body in plain text for non-HTML mail clients";
+        $mail->Subject        = "Here is the subject";
+        $mail->Body           = "This is the HTML message body <b>in bold!</b>";
+        $mail->AltBody        = "This is the body in plain text for non-HTML mail clients";
 
-        // $mail->AddAddress("teguh.kurniawan@pln.co.id");
-        // $mail->IsHTML(true);
+        $mail->AddAddress("teguh.kurniawan@pln.co.id");
+        $mail->IsHTML(true);
 
-        // if(!$mail->Send())
-        // {
-        //     echo "Message could not be sent. <p>";
-        //     echo "Mailer Error: " . $mail->ErrorInfo;
-        //     exit;
-        // }
+        if(!$mail->Send())
+        {
+            echo "Message could not be sent. <p>";
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            exit;
+        }
 
-        // echo "Message has been sent";
+        echo "Message has been sent";
 	}
 
     public function getUser(){
