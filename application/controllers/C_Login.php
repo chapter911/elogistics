@@ -17,22 +17,13 @@ class C_Login extends CI_Controller {
 		if($this->session->userdata('username')){
 			redirect("C_Stock");
 		} else {
-			$data['kategori'] = $this->M_AllFunction->CustomQuery("SELECT id, kategori FROM mst_material_hdr WHERE is_active = 1");
-			$data['tanggal_stock'] = $this->M_AllFunction->CustomQuery("SELECT MAX(tanggal_stock) AS tanggal_stock FROM trn_stock_material");
-			$this->load->view("v_login", $data);
+			$this->load->view("v_login");
 		}
 	}
 
 	public function auth(){
 		$username = $this->input->post('username', true);
 		$password = $this->input->post('password', true);
-
-		// $secretKey = "6LdbpGAqAAAAALNaaosolvareVwEBJciDkV_9PLp";
-		// $token = $this->input->post('token', true);
-		// $ip = $_SERVER['REMOTE_ADDR'];
-		// $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $secretKey . "&response=" . $token . "&remoteip=" . $ip;
-		// $request = file_get_contents($url);
-		// $response = json_decode($request);
 
 		$insert = array(
 			'username' => $username,
@@ -42,13 +33,6 @@ class C_Login extends CI_Controller {
 			'capcha_passed' => 1
 		);
 
-		// if($response->success != 1){
-		// 	$insert['is_logged_in'] = 0;
-		// 	$insert['capcha_passed'] = 0;
-		// 	$this->M_AllFunction->Insert('trn_login_log', $insert);
-		// 	$this->session->set_flashdata('message', 'Mohon Coba Lagi');
-		// 	redirect("C_Login");
-		// } else {
 		$cek = $this->M_AllFunction->Where('vw_user', "username = '$username'");
 
 		if(count($cek) == 0){
@@ -82,7 +66,6 @@ class C_Login extends CI_Controller {
 				redirect('C_Login');
 			}
 		}
-		// }
 	}
 
 	public function Log(){
