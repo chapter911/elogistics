@@ -15,12 +15,6 @@
 
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/app_logo.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
-        rel="stylesheet" /> -->
-
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/fonts/fontawesome.css" />
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/fonts/tabler-icons.css" />
     <link rel="stylesheet" href="<?= base_url(); ?>assets/vendor/fonts/flag-icons.css" />
@@ -74,14 +68,6 @@
     <script src="<?= base_url(); ?>assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <script src="<?= base_url(); ?>assets/vendor/libs/chartjs/chartjs.js"></script>
-
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->
 
     <script>
     var timeoutInMilliseconds = 1800000;
