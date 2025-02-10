@@ -24,6 +24,7 @@
             $mail->Port = "25";
             $mail->Mailer = "smtp";
             $mail->SMTPAuth = false;
+            $mail->SMTPAutoTLS = false;
             $mail->Username = 'pusat\divsti.jkt1';
             $mail->Password = 'Pln@202502';
             $mail->setFrom('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
