@@ -42,15 +42,19 @@ class C_WebUser extends CI_Controller {
         }
 	}
 
-	public function index(){
-        // $data['data'] = $this->M_AllFunction->Get("vw_user");
-        // $data['group'] = $this->M_AllFunction->Where("mst_user_group", "is_active = 1");
-        // $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
-        // $data['unit'] = $this->M_AllFunction->Get("mst_unit");
-		// $this->template->display("webuser/index", $data);
-        // $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
-        // $this->sendemail->send("Test", "UJI COBA", $receiver);
+    public function index(){
+        $data['data'] = $this->M_AllFunction->Get("vw_user");
+        $data['group'] = $this->M_AllFunction->Where("mst_user_group", "is_active = 1");
+        $data['jabatan'] = $this->M_AllFunction->Where("mst_jabatan", "is_active = 1");
+        $data['unit'] = $this->M_AllFunction->Get("mst_unit");
+		$this->template->display("webuser/index", $data);
+    }
 
+	public function email1(){
+        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
+        $this->sendemail->send("Test", "UJI COBA", $receiver);
+    }
+	public function email2(){
         require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
         require_once(APPPATH . 'libraries/mail/class.smtp.php');
 
@@ -62,11 +66,8 @@ class C_WebUser extends CI_Controller {
         $mail->Mailer         = "smtp";
         $mail->SMTPAuth       = false;
 
-        // $mail->Username       = "pusat\helpme";
-        // $mail->Password       = "Jakarta@321";
-
         $mail->Username       = "pusat\divsti.jkt1";
-        $mail->Password       = "Pln@202501";
+        $mail->Password       = "Pln@202502";
 
         $mail->From           = "Helpme@pln.co.id";
         $mail->FromName       = "Helpme - DIVSTI JKT 1";
