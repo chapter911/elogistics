@@ -51,9 +51,10 @@ class C_WebUser extends CI_Controller {
     }
 
 	public function email1(){
-        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Teguh'");
+        $receiver = $this->M_AllFunction->CustomQuery("SELECT email FROM mst_user WHERE username = 'Administrator'");
         $this->sendemail->send("Test", "UJI COBA", $receiver);
     }
+
 	public function email2(){
         require_once(APPPATH . 'libraries/mail/class.phpmailer.php');
         require_once(APPPATH . 'libraries/mail/class.smtp.php');
