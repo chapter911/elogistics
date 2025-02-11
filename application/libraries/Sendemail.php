@@ -29,10 +29,9 @@
             $mail->Password = 'Pln@202502';
             $mail->setFrom('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
             $mail->addReplyTo('no-reply@pln.co.id', 'No-Reply E-Logistics PLN');
-            $mail->addAddress("agung.justik@gmail.com");
-            // foreach ($receiver as $r) {
-            //     $mail->addAddress($r->email);
-            // }
+            foreach ($receiver as $r) {
+                $mail->addAddress($r->email);
+            }
             $mail->Subject = $title;
             $mail->Body = $message;
             $mail->IsHTML(true);
