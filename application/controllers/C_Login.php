@@ -69,8 +69,70 @@ class C_Login extends CI_Controller {
 	}
 
 	public function ldap(){
-		// echo "http://10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
 		$this->load->view("v_login_ldap");
+	}
+
+	public function authLDAP(){
+		$username = $this->input->post('username', true);
+		$password = $this->input->post('password', true);
+
+		$ldapconfig['host'] = 'ldap://your-ldap-server';
+		$ldapconfig['port'] = 389;
+		$ldapconfig['basedn'] = 'dc=example,dc=com';
+		$ldapconfig['usersdn'] = 'ou=users';
+
+		$ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
+
+		if ($ldapconn) {
+			ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+			ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+
+			$ldapbind = @ldap_bind($ldapconn, "uid=$username," . $ldapconfig['usersdn'] . "," . $ldapconfig['basedn'], $password);
+
+			if ($ldapbind) {
+				$insert = array(
+					'username' => $username,
+					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
+					'ip_addr' => $_SERVER['SERVER_ADDR'],
+					'login_date' => date('Y-m-d H:i:s'),
+					'is_logged_in' => 1,
+					'capcha_passed' => 1
+				);
+				$this->M_AllFunction->Insert('trn_login_log', $insert);
+
+				$cek = $this->M_AllFunction->Where('vw_user', "username = '$username'");
+
+				if(count($cek) == 0){
+					$this->session->set_flashdata('message', 'email tidak ditemukan');
+					redirect('C_Login');
+				} else {
+					if($cek[0]->is_active == 0){
+						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
+						redirect('C_Login');
+					}
+					$this->session->set_userdata('username', $cek[0]->username);
+					$this->session->set_userdata('group_name', $cek[0]->group_name);
+					$this->session->set_userdata('group_id', $cek[0]->group_id);
+					$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
+					$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
+					$this->session->set_userdata('unit_id', $cek[0]->unit_id);
+					$this->session->set_userdata('unit_name', $cek[0]->unit_name);
+					redirect('C_Stock');
+				}
+			} else {
+				$insert = array(
+					'username' => $username,
+					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
+					'ip_addr' => $_SERVER['SERVER_ADDR'],
+					'login_date' => date('Y-m-d H:i:s'),
+					'is_logged_in' => 0,
+					'capcha_passed' => 1
+				);
+				$this->M_AllFunction->Insert('trn_login_log', $insert);
+				$this->session->set_flashdata('message', 'username / password Anda salah');
+				redirect('C_Login');
+			}
+		}
 	}
 
 	public function Log(){

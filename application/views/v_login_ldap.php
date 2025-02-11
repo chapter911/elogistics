@@ -58,7 +58,7 @@
                 <div class="w-px-400 mx-auto mt-12 pt-5">
                     <img src="<?= site_url(); ?>assets/tes2.png" height="80" alt="Logo"
                         style="display: block; margin: 0 auto;" />
-                    <form id="formAuthentication" class="mb-6 mt-10" action="<?= site_url()?>C_Login/auth" method="POST"
+                    <form id="formAuthentication" class="mb-6 mt-10" action="<?= site_url()?>C_Login/ldapAuth" method="POST"
                         autocomplete="off" role="presentation" autocomplete="new-text">
                         <div class="mb-6">
                             <label for="username" class="form-label">Username</label>
