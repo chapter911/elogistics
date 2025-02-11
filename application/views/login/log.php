@@ -1,3 +1,33 @@
+<style>
+.embed-container {
+    position: relative;
+    padding-bottom: 80%;
+    height: 0;
+    max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+small {
+    position: absolute;
+    z-index: 40;
+    bottom: 0;
+    margin-bottom: -15px;
+}
+</style>
+<div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0"
+        marginwidth="0" title="map_indonesia"
+        src="//gis.pln.co.id/arcgis/apps/Embed/index.html?webmap=00931c3d454d4d72898f6c77bd5d7a44&extent=89.248,-17.8478,143.2129,9.4548&zoom=true&previewImage=false&scale=true&search=true&searchextent=true&details=true&disable_scroll=true&theme=light"></iframe>
+</div>
+
 <div class="card mb-6">
     <div class="card-header header-elements">
         <h3 class="mb-0 me-2">Daftar Login</h3>

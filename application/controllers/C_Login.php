@@ -69,8 +69,8 @@ class C_Login extends CI_Controller {
 	}
 
 	public function ldap(){
-		echo "http://10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
-		// $this->load->view("v_login_ldap");
+		// echo "http://10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
+		$this->load->view("v_login_ldap");
 	}
 
 	public function Log(){
