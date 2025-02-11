@@ -72,7 +72,7 @@ class C_Login extends CI_Controller {
 		$this->load->view("v_login_ldap");
 	}
 
-	public function authLDAP(){
+	public function ldapAuth(){
 		$email = $this->input->post('email', true);
 		$password = $this->input->post('password', true);
 
