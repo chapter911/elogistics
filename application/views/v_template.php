@@ -69,8 +69,8 @@
 
     <script src="<?= base_url(); ?>assets/vendor/libs/chartjs/chartjs.js"></script>
 
-    <link rel="stylesheet" href="<?= APPPATH . 'libraries/leaflet/leaflet.css'?>" />
-    <script src="<?= APPPATH . 'libraries/leaflet/leaflet.js'?>"></script>
+    <link rel="stylesheet" href="<?= base_url(); ?>libraries/leaflet/leaflet.css" />
+    <script src="<?= base_url(); ?>libraries/leaflet/leaflet.js"></script>
 
     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
