@@ -68,6 +68,10 @@ class C_Login extends CI_Controller {
 		}
 	}
 
+	public function ldap(){
+		$this->load->view("v_login_ldap");
+	}
+
 	public function Log(){
 		if(!$this->session->userdata('username')){
 			redirect("C_Stock");

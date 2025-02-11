@@ -81,8 +81,6 @@
                         </div>
                         <button type="submit" class="btn btn-primary d-grid w-100">Masuk</button>
                         <hr />
-                        <a href="<?= base_url() . 'C_Login/ldap'; ?>" class="btn btn-primary d-grid w-100">LDAP Login</a>
-                        <hr />
                         <div style="text-align: center; margin-top: 30px;">© 2023 <b>PLN UID Jakarta Raya</b></div>
                     </form>
                 </div>
