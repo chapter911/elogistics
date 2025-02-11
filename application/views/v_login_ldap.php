@@ -61,13 +61,13 @@
                     <form id="formAuthentication" class="mb-6 mt-10" action="<?= site_url()?>C_Login/ldapAuth" method="POST"
                         autocomplete="off" role="presentation" autocomplete="new-text">
                         <div class="mb-6">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Email</label>
                             <input type="hidden" class="form-control" placeholder="Token" name="token" id="token"
                                 required="required">
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
                                 value="<?=$this->security->get_csrf_hash();?>">
-                            <input type="text" class="form-control" id="username" name="username" autocomplete="off"
-                                role="presentation" autocomplete="new-text" placeholder="Masukkan username Anda"
+                            <input type="text" class="form-control" id="email" name="email" autocomplete="off"
+                                role="presentation" autocomplete="new-text" placeholder="Masukkan email Anda"
                                 autofocus required />
                         </div>
                         <div class="mb-6 form-password-toggle">

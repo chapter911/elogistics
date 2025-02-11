@@ -73,7 +73,7 @@ class C_Login extends CI_Controller {
 	}
 
 	public function authLDAP(){
-		$username = $this->input->post('username', true);
+		$email = $this->input->post('email', true);
 		$password = $this->input->post('password', true);
 
 		$ldapconfig['host'] = 'ldap://your-ldap-server';
@@ -87,11 +87,11 @@ class C_Login extends CI_Controller {
 			ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-			$ldapbind = @ldap_bind($ldapconn, "uid=$username," . $ldapconfig['usersdn'] . "," . $ldapconfig['basedn'], $password);
+			$ldapbind = @ldap_bind($ldapconn, "uid=$email," . $ldapconfig['usersdn'] . "," . $ldapconfig['basedn'], $password);
 
 			if ($ldapbind) {
 				$insert = array(
-					'username' => $username,
+					'email' => $email,
 					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
 					'ip_addr' => $_SERVER['SERVER_ADDR'],
 					'login_date' => date('Y-m-d H:i:s'),
@@ -100,7 +100,7 @@ class C_Login extends CI_Controller {
 				);
 				$this->M_AllFunction->Insert('trn_login_log', $insert);
 
-				$cek = $this->M_AllFunction->Where('vw_user', "username = '$username'");
+				$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
 
 				if(count($cek) == 0){
 					$this->session->set_flashdata('message', 'email tidak ditemukan');
