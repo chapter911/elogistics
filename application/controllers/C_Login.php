@@ -131,6 +131,7 @@ class C_Login extends CI_Controller {
 		} else {
 			echo "LDAP connection failed<br>";
 		}
+		ldap_close($ldapconn);
 	}
 
 	public function Log(){
