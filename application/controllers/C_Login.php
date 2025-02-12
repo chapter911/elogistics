@@ -76,12 +76,18 @@ class C_Login extends CI_Controller {
 		$email = $this->input->post('email', true);
 		$password = $this->input->post('password', true);
 
-		$ldapconfig['host'] = 'ldap://your-ldap-server';
-		$ldapconfig['port'] = 389;
-		$ldapconfig['basedn'] = 'dc=example,dc=com';
-		$ldapconfig['usersdn'] = 'ou=users';
-
+		// $ldapconfig['host'] = 'ldap://your-ldap-server';
+		// $ldapconfig['port'] = 389;
+		// $ldapconfig['basedn'] = 'dc=example,dc=com';
+		// $ldapconfig['usersdn'] = 'ou=users';
 		$ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
+
+		$ldapconfig['host'] = '10.1.8.30';
+		// $ldapconfig['port'] = 389;
+		$ldapconfig['basedn'] = 'dc=pusat,dc=corp,dc=pln,dc=co,dc=id';
+		// $ldapconfig['usersdn'] = 'ou=users';
+
+		$ldapconn = ldap_connect($ldapconfig['host']) or die("Could not connect to LDAP server.");
 		echo '<pre>'; print_r($ldapconn); echo '</pre>';
 		die();
 
