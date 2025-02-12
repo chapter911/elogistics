@@ -93,55 +93,41 @@ class C_Login extends CI_Controller {
 			ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-			$ldapbind = ldap_bind($ldapconn, $email, $password);
-			echo '<pre>'; print_r($ldapbind); echo '</pre>';
-			echo '<pre>'; print_r(ldap_errno($ldapconn)); echo '</pre>';
-			die();
+			$ldapbind = @ldap_bind($ldapconn, $email, $password);
+			if(!$ldapbind){
+				$this->session->set_flashdata('message', 'email / password Anda salah');
+				redirect('C_Login/ldap');
+			} else {
+				$insert = array(
+					'email' => $email,
+					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
+					'ip_addr' => $_SERVER['SERVER_ADDR'],
+					'login_date' => date('Y-m-d H:i:s'),
+					'is_logged_in' => 1,
+					'capcha_passed' => 1
+				);
+				$this->M_AllFunction->Insert('trn_login_log', $insert);
 
+				$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
 
-			// if ($ldapbind) {
-			// 	$insert = array(
-			// 		'email' => $email,
-			// 		'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
-			// 		'ip_addr' => $_SERVER['SERVER_ADDR'],
-			// 		'login_date' => date('Y-m-d H:i:s'),
-			// 		'is_logged_in' => 1,
-			// 		'capcha_passed' => 1
-			// 	);
-			// 	$this->M_AllFunction->Insert('trn_login_log', $insert);
-
-			// 	$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
-
-			// 	if(count($cek) == 0){
-			// 		$this->session->set_flashdata('message', 'email tidak ditemukan');
-			// 		redirect('C_Login');
-			// 	} else {
-			// 		if($cek[0]->is_active == 0){
-			// 			$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
-			// 			redirect('C_Login');
-			// 		}
-			// 		$this->session->set_userdata('username', $cek[0]->username);
-			// 		$this->session->set_userdata('group_name', $cek[0]->group_name);
-			// 		$this->session->set_userdata('group_id', $cek[0]->group_id);
-			// 		$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
-			// 		$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
-			// 		$this->session->set_userdata('unit_id', $cek[0]->unit_id);
-			// 		$this->session->set_userdata('unit_name', $cek[0]->unit_name);
-			// 		redirect('C_Stock');
-			// 	}
-			// } else {
-			// 	$insert = array(
-			// 		'username' => $username,
-			// 		'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
-			// 		'ip_addr' => $_SERVER['SERVER_ADDR'],
-			// 		'login_date' => date('Y-m-d H:i:s'),
-			// 		'is_logged_in' => 0,
-			// 		'capcha_passed' => 1
-			// 	);
-			// 	$this->M_AllFunction->Insert('trn_login_log', $insert);
-			// 	$this->session->set_flashdata('message', 'username / password Anda salah');
-			// 	redirect('C_Login');
-			// }
+				if(count($cek) == 0){
+					$this->session->set_flashdata('message', 'email tidak ditemukan');
+					redirect('C_Login');
+				} else {
+					if($cek[0]->is_active == 0){
+						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
+						redirect('C_Login');
+					}
+					$this->session->set_userdata('username', $cek[0]->username);
+					$this->session->set_userdata('group_name', $cek[0]->group_name);
+					$this->session->set_userdata('group_id', $cek[0]->group_id);
+					$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
+					$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
+					$this->session->set_userdata('unit_id', $cek[0]->unit_id);
+					$this->session->set_userdata('unit_name', $cek[0]->unit_name);
+					redirect('C_Stock');
+				}
+			}
 		} else {
 			echo "LDAP connection failed<br>";
 		}
