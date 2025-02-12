@@ -88,8 +88,6 @@ class C_Login extends CI_Controller {
 		// $ldapconfig['usersdn'] = 'ou=users';
 
 		$ldapconn = ldap_connect($ldapconfig['host']) or die("Could not connect to LDAP server.");
-		echo $ldapconn;
-		die();
 
 		if ($ldapconn) {
 			ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -140,6 +138,8 @@ class C_Login extends CI_Controller {
 				$this->session->set_flashdata('message', 'username / password Anda salah');
 				redirect('C_Login');
 			}
+		} else {
+			echo "LDAP connection failed<br>";
 		}
 	}
 
