@@ -88,7 +88,7 @@ class C_Login extends CI_Controller {
 		// $ldapconfig['usersdn'] = 'ou=users';
 
 		$ldapconn = ldap_connect($ldapconfig['host']) or die("Could not connect to LDAP server.");
-		echo '<pre>'; print_r($ldapconn); echo '</pre>';
+		echo $ldapconn;
 		die();
 
 		if ($ldapconn) {
