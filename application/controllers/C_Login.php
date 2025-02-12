@@ -82,7 +82,7 @@ class C_Login extends CI_Controller {
 		// $ldapconfig['usersdn'] = 'ou=users';
 		// $ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
 
-		$ldapconfig['host'] = '10.1.8.30111';
+		$ldapconfig['host'] = '10.1.8.30';
 		// $ldapconfig['port'] = 389;
 		$ldapconfig['basedn'] = 'dc=pusat,dc=corp,dc=pln,dc=co,dc=id';
 		// $ldapconfig['usersdn'] = 'ou=users';
@@ -90,11 +90,13 @@ class C_Login extends CI_Controller {
 		$ldapconn = ldap_connect($ldapconfig['host']) or die("Could not connect to LDAP server.");
 
 		if ($ldapconn) {
-			echo $ldapconn . "123";
-			// ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-			// ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+			ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+			ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-			// $ldapbind = @ldap_bind($ldapconn, "uid=$email," . $ldapconfig['usersdn'] . "," . $ldapconfig['basedn'], $password);
+			$ldapbind = @ldap_bind($ldapconn, $email, $password);
+			echo '<pre>'; print_r($ldapbind); echo '</pre>';
+			die();
+
 
 			// if ($ldapbind) {
 			// 	$insert = array(
