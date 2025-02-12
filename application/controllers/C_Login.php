@@ -80,7 +80,7 @@ class C_Login extends CI_Controller {
 		// $ldapconfig['port'] = 389;
 		// $ldapconfig['basedn'] = 'dc=example,dc=com';
 		// $ldapconfig['usersdn'] = 'ou=users';
-		$ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
+		// $ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
 
 		$ldapconfig['host'] = '10.1.8.30';
 		// $ldapconfig['port'] = 389;
