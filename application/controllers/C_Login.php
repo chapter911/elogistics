@@ -93,6 +93,7 @@ class C_Login extends CI_Controller {
 				$cek = $this->M_AllFunction->Where('vw_user', "ldap_account = '$email'");
 
 				if(count($cek) == 0){
+					echo '<pre>'; print_r('vw_user' . "ldap_account = '$email'"); echo '</pre>';
 					echo "akun ldap tidak ditemukan";
 					// $this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
 					// redirect('C_Login');
