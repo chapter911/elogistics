@@ -76,16 +76,8 @@ class C_Login extends CI_Controller {
 		$email = $this->input->post('email', true);
 		$password = $this->input->post('password', true);
 
-		// $ldapconfig['host'] = 'ldap://your-ldap-server';
-		// $ldapconfig['port'] = 389;
-		// $ldapconfig['basedn'] = 'dc=example,dc=com';
-		// $ldapconfig['usersdn'] = 'ou=users';
-		// $ldapconn = ldap_connect($ldapconfig['host'], $ldapconfig['port']) or die("Could not connect to LDAP server.");
-
 		$ldapconfig['host'] = '10.1.8.30';
-		// $ldapconfig['port'] = 389;
 		$ldapconfig['basedn'] = 'dc=pusat,dc=corp,dc=pln,dc=co,dc=id';
-		// $ldapconfig['usersdn'] = 'ou=users';
 
 		$ldapconn = ldap_connect($ldapconfig['host']) or die("Could not connect to LDAP server.");
 
@@ -98,24 +90,35 @@ class C_Login extends CI_Controller {
 				$this->session->set_flashdata('message', 'email / password Anda salah');
 				redirect('C_Login/ldap');
 			} else {
-				$insert = array(
-					'email' => $email,
-					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
-					'ip_addr' => $_SERVER['SERVER_ADDR'],
-					'login_date' => date('Y-m-d H:i:s'),
-					'is_logged_in' => 1,
-					'capcha_passed' => 1,
-					"is_ldap" => 1
-				);
-				$this->M_AllFunction->Insert('trn_login_log', $insert);
-				$this->session->set_userdata('username', $cek[0]->username);
-				$this->session->set_userdata('group_name', $cek[0]->group_name);
-				$this->session->set_userdata('group_id', $cek[0]->group_id);
-				$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
-				$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
-				$this->session->set_userdata('unit_id', $cek[0]->unit_id);
-				$this->session->set_userdata('unit_name', $cek[0]->unit_name);
-				redirect('C_Stock');
+				$cek = $this->M_AllFunction->Where('vw_user', "ldap_account = '$email'");
+
+				if(count($cek) == 0){
+					$this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
+					redirect('C_Login');
+				} else {
+					if($cek[0]->is_active == 0){
+						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
+						redirect('C_Login');
+					}
+					$insert = array(
+						'email' => $email,
+						'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
+						'ip_addr' => $_SERVER['SERVER_ADDR'],
+						'login_date' => date('Y-m-d H:i:s'),
+						'is_logged_in' => 1,
+						'capcha_passed' => 1,
+						"is_ldap" => 1
+					);
+					$this->M_AllFunction->Insert('trn_login_log', $insert);
+					$this->session->set_userdata('username', $cek[0]->username);
+					$this->session->set_userdata('group_name', $cek[0]->group_name);
+					$this->session->set_userdata('group_id', $cek[0]->group_id);
+					$this->session->set_userdata('jabatan_id', $cek[0]->jabatan_id);
+					$this->session->set_userdata('jabatan_name', $cek[0]->jabatan_name);
+					$this->session->set_userdata('unit_id', $cek[0]->unit_id);
+					$this->session->set_userdata('unit_name', $cek[0]->unit_name);
+					redirect('C_Stock');
+				}
 			}
 		} else {
 			echo "LDAP connection failed<br>";
