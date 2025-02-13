@@ -98,15 +98,6 @@ class C_Login extends CI_Controller {
 				$this->session->set_flashdata('message', 'email / password Anda salah');
 				redirect('C_Login/ldap');
 			} else {
-				$insert = array(
-					'email' => $email,
-					'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
-					'ip_addr' => $_SERVER['SERVER_ADDR'],
-					'login_date' => date('Y-m-d H:i:s'),
-					'is_logged_in' => 1,
-					'capcha_passed' => 1
-				);
-				$this->M_AllFunction->Insert('trn_login_log', $insert);
 
 				$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
 
@@ -118,6 +109,16 @@ class C_Login extends CI_Controller {
 						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
 						redirect('C_Login');
 					}
+					$insert = array(
+						'email' => $email,
+						'local_ip_addr' => $_SERVER['REMOTE_ADDR'],
+						'ip_addr' => $_SERVER['SERVER_ADDR'],
+						'login_date' => date('Y-m-d H:i:s'),
+						'is_logged_in' => 1,
+						'capcha_passed' => 1,
+						"is_ldap" => 1
+					);
+					$this->M_AllFunction->Insert('trn_login_log', $insert);
 					$this->session->set_userdata('username', $cek[0]->username);
 					$this->session->set_userdata('group_name', $cek[0]->group_name);
 					$this->session->set_userdata('group_id', $cek[0]->group_id);
