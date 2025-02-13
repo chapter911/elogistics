@@ -93,8 +93,9 @@ class C_Login extends CI_Controller {
 				$cek = $this->M_AllFunction->Where('vw_user', "ldap_account = '$email'");
 
 				if(count($cek) == 0){
-					$this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
-					redirect('C_Login');
+					echo "akun ldap tidak ditemukan";
+					// $this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
+					// redirect('C_Login');
 				} else {
 					if($cek[0]->is_active == 0){
 						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
