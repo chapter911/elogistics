@@ -56,7 +56,9 @@ class C_SIPB extends CI_Controller
 
     function test()
     {
-        $data['data'] = json_decode($this->curl->simple_get("10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024"));
+        $url = "10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
+        $data['url'] = $url;
+        $data['data'] = json_decode($this->curl->simple_get($url));
         echo '<pre>'; print_r($data); echo '</pre>';
         die();
     }
