@@ -58,6 +58,8 @@ class Curl {
 		// Get acts differently, as it doesnt accept parameters in the same way
 		if ($method === 'get')
 		{
+			echo '<pre>'; print_r($method . ' xxx ' . $url); echo '</pre>';
+			die();
 			// If a URL is provided, create new session
 			$this->create($url.($params ? '?'.http_build_query($params, NULL, '&') : ''));
 		}
@@ -66,8 +68,6 @@ class Curl {
 		{
 			// If a URL is provided, create new session
 			$this->create($url);
-			echo '<pre>'; print_r($url); echo '</pre>';
-			die();
 
 			$this->{$method}($params);
 		}
