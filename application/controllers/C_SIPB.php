@@ -15,7 +15,9 @@ class C_SIPB extends CI_Controller
     {
         parent::__construct();
 
+
         $this->load->library('Pdf');
+        $this->load->library('curl');
 
         if (!$this->session->userdata('username')) {
             redirect('C_Login');
@@ -48,8 +50,6 @@ class C_SIPB extends CI_Controller
 
     function index()
     {
-        echo phpinfo();
-        die();
         $data = json_decode($this->curl->simple_get("10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024"));
         echo '<pre>'; print_r($data); echo '</pre>';
         die();
