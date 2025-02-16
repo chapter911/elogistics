@@ -66,6 +66,8 @@ class Curl {
 		{
 			// If a URL is provided, create new session
 			$this->create($url);
+			echo '<pre>'; print_r($url); echo '</pre>';
+			die();
 
 			$this->{$method}($params);
 		}
