@@ -22,7 +22,7 @@ class C_SIPB_Rest extends REST_Controller {
                 $data['message'] = "data found";
                 $data['header'] = $header;
                 foreach($header as $h) {
-                    $data['detail'] = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
+                    $data['header']['detail'] = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
                 }
                 $this->response($data, 200);
             } else {
