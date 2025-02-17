@@ -1,5 +1,6 @@
 <?php
 require APPPATH . '/libraries/REST_Controller.php';
+use Restserver\Libraries\REST_Controller;
 
 class C_SIPB_Rest extends REST_Controller {
 
