@@ -54,7 +54,7 @@ class C_SIPB extends CI_Controller
         $this->template->display('satuan/index', $data);
     }
 
-    function test()
+    function getData()
     {
         $url = "http://10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
         $data['url'] = $url;
