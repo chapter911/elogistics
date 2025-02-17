@@ -20,11 +20,11 @@ class C_SIPB_Rest extends REST_Controller {
             if(count($header) > 0) {
                 $data['status'] = "success";
                 $data['message'] = "data found";
-                $data['header'] = $header;
+                $data['data'] = $header;
                 for($i = 0; $i < count($header); $i++) {
                     $h = $header[$i];
                     $detail = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
-                    $data['header'][$i]->detail = $detail;
+                    $data['data'][$i]->detail = $detail;
                 }
                 $this->response($data, 200);
             } else {
