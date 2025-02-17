@@ -23,8 +23,8 @@ class C_SIPB_Rest extends REST_Controller {
                 $data['data'] = $header;
                 for($i = 0; $i < count($header); $i++) {
                     $h = $header[$i];
-                    $detail = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
-                    $data['data'][$i]->detail = $detail;
+                    $material = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
+                    $data['data'][$i]->material = $material;
                 }
                 $this->response($data, 200);
             } else {
