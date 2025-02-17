@@ -15,7 +15,6 @@ class C_SIPB extends CI_Controller
     {
         parent::__construct();
 
-
         $this->load->library('Pdf');
         $this->load->library('Curl');
 
