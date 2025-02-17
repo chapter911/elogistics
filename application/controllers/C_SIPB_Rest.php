@@ -16,11 +16,14 @@ class C_SIPB_Rest extends REST_Controller {
             $data['data'] = "no kr is not found";
             $this->response($data, 404);
         } else {
-            $header = $this->db->query("SELECT * FROM trn_sipb_hdr WHERE no_spj = '".$this->get('kr')."'")->result();
+            $header = $this->db->query("SELECT * FROM vw_sipb_hdr WHERE no_spj = '".$this->get('kr')."'")->result();
             if(count($header) > 0) {
                 $data['status'] = "success";
                 $data['message'] = "data found";
-                $data['data'] = $header;
+                $data['header'] = $header;
+                foreach($header as $h) {
+                    $detail['detail'] = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
+                }
                 $this->response($data, 200);
             } else {
                 $data['status'] = "failed";
