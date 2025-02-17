@@ -21,9 +21,10 @@ class C_SIPB_Rest extends REST_Controller {
                 $data['status'] = "success";
                 $data['message'] = "data found";
                 $data['header'] = $header;
-                foreach($header as $h) {
-                    $data['data']['header'] = $h;
-                    $data['data']['detail'] = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
+                for($i = 0; $i < count($header); $i++) {
+                    $h = $header[$i];
+                    $detail = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
+                    array_push($data['header'][$i], $detail);
                 }
                 $this->response($data, 200);
             } else {
