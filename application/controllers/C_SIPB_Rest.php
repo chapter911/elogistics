@@ -24,7 +24,7 @@ class C_SIPB_Rest extends REST_Controller {
                 for($i = 0; $i < count($header); $i++) {
                     $h = $header[$i];
                     $detail = $this->db->query("SELECT * FROM vw_sipb_dtl WHERE no_sipb = '".$h->no_sipb."'")->result();
-                    $data['header']['detail'] = $detail;
+                    $data['header'][$i]['detail'] = $detail;
                 }
                 $this->response($data, 200);
             } else {
