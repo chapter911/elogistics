@@ -2,13 +2,6 @@
 require APPPATH . '/libraries/REST_Controller.php';
 use Restserver\Libraries\REST_Controller;
 
-/**
- * @property M_AllFunction $M_AllFunction
- * @property Session $session
- * @property Template $template
- * @property Uri $uri
- */
-
 class C_SIPB_Rest extends REST_Controller {
 
     function __construct($config = 'rest') {
@@ -23,7 +16,7 @@ class C_SIPB_Rest extends REST_Controller {
             $data['data'] = "no kr is not found";
             $this->response($data, 404);
         } else {
-            $header = $this->m_allfunction->CustomQuery("SELECT * FROM trn_sipb_hdr WHERE no_spj = '".$this->get('kr')."'");
+            $header = $this->db->query("SELECT * FROM trn_sipb_hdr WHERE no_spj = '".$this->get('kr')."'")->result();
             if(count($header) > 0) {
                 $data['status'] = "success";
                 $data['message'] = "data found";
