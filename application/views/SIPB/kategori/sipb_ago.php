@@ -1,10 +1,10 @@
 <style>
-    .not-active {
-        color: #acaab1;
-        background-color: #f3f2f3;
-        border-color: #cdccd0;
-        opacity: 1;
-    }
+.not-active {
+    color: #acaab1;
+    background-color: #f3f2f3;
+    border-color: #cdccd0;
+    opacity: 1;
+}
 </style>
 
 <h3>
@@ -21,30 +21,31 @@
         <h6>1. Data SIPB</h6>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Tanggal</label>
-            <input type="date" name="tanggal" id="tanggal_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="No SIPB" value="<?= isset($header) ? $header[0]->tanggal : date('Y-m-d'); ?>" <?= isset($header) ? "readonly" : "";?> required />
+            <input type="date" name="tanggal" id="tanggal_ago"
+                class="form-control form-control-solid mb-3 mb-lg-0 <?= isset($header) ? "not-active" : "" ?>"
+                placeholder="Tanggal" value="<?= isset($header) ? $header[0]->tanggal : date('Y-m-d'); ?>"
+                <?= isset($header) ? "readonly" : "";?> required />
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">NO SIPB</label>
-            <input type="text" name="no_sipb" id="no_sipb_ago" class="form-control form-control-solid mb-3 mb-lg-0"
+            <input type="text" name="no_sipb" id="no_sipb_ago"
+                class="form-control form-control-solid mb-3 mb-lg-0 <?= isset($header) ? "not-active" : "" ?>"
                 placeholder="No SIPB" value="<?= isset($header) ? $header[0]->no_sipb : $sipb; ?>" readonly required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Kode Gudang</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= $header[0]->storage_location; ?>" readonly />
-            <?php } else { ?>
-            <select name="storage_location" id="storage_location_ago" class="select2" data-placeholder="Pilih Kode Gudang">
+            <select name="storage_location"
+                id="<?= isset($header) ? "storage_location_ago_update" : "storage_location_ago"; ?>" class="select2"
+                data-placeholder="Pilih Kode Gudang">
                 <option value="">- PILIH -</option>
                 <?php foreach ($storage_location as $d) { ?>
-                <option value="<?= html_escape($d->storage_location); ?>">
+                <option value="<?= html_escape($d->storage_location); ?>"
+                    <?= isset($header) && ($header[0]->storage_location == $d->storage_location) ? "selected" : "" ?>>
                     <?= html_escape($d->storage_location); ?></option>
                 <?php } ?>
             </select>
-            <?php } ?>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Nomor Kendaraan</label>
@@ -55,51 +56,54 @@
     <div class="row mb-4">
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Unit Asal</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= $header[0]->unit_asal_name; ?>" readonly />
-            <?php } else { ?>
-            <input type="hidden" name="unit_asal" id="unit_asal_ago"
-                class="form-control form-control-solid mb-3 mb-lg-0" value="<?= $this->session->userdata('unit_id'); ?>"
-                required />
-            <select name="unit_name" id="unit_name_ago" class="select2" data-placeholder="Pilih Unit Asal" disabled>
+            <input type="hidden" name="unit_asal" id="unit_asal_ago" class="form-control mb-3 mb-lg-0"
+                value="<?= isset($header) ? $header[0]->unit_asal : $this->session->userdata('unit_id'); ?>" required />
+            <select name="unit_name" id="<?= isset($header) ? "unit_name_ago_update" : "unit_name_ago"; ?>"
+                class="select2" data-placeholder="Pilih Unit Asal" disabled>
                 <option value="">- PILIH -</option>
                 <?php foreach ($unit as $d) { ?>
-                <option value="<?= html_escape($d->id); ?>"
-                    <?= html_escape($d->id) == $this->session->userdata("unit_id") ? "selected" : ""?>>
+                <option value="<?= html_escape($d->id); ?>" <?php if(isset($header)){
+                        if($header[0]->unit_asal == $d->id){
+                            echo "selected";
+                        }
+                    } else if(html_escape($d->id) == $this->session->userdata("unit_id")){
+                        echo "selected";
+                    } ?>>
                     <?= html_escape($d->name); ?></option>
                 <?php } ?>
             </select>
-            <?php } ?>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Unit Tujuan</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= $header[0]->unit_tujuan_name; ?>" readonly />
-            <?php } else { ?>
-            <select name="unit_tujuan" id="unit_tujuan_ago" class="select2" data-placeholder="Pilih Unit Tujuan">
+            <select name="unit_tujuan" id="<?= isset($header) ? "unit_tujuan_ago_update" : "unit_tujuan_ago"; ?>"
+                class="select2" data-placeholder="Pilih Unit Tujuan">
                 <option value="">- PILIH -</option>
                 <?php foreach ($unit as $d) { ?>
-                <option value="<?= html_escape($d->id); ?>"><?= html_escape($d->name); ?></option>
+                <option value="<?= html_escape($d->id); ?>" <?php if(isset($header)){
+                        if($header[0]->unit_tujuan == $d->id){
+                            echo "selected";
+                        }
+                    } else if(html_escape($d->id) == $this->session->userdata("unit_id")){
+                        echo "selected";
+                    } ?>>
+                    <?= html_escape($d->name); ?></option>
                 <?php } ?>
             </select>
-            <?php } ?>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Bidang Tujuan</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->bidang_tujuan); ?>" readonly />
-            <?php } else { ?>
-            <select name="bidang_tujuan" id="bidang_tujuan_ago" class="select2" data-placeholder="Bidang Tujuan">
+            <select name="bidang_tujuan" id="<?= isset($header) ? "bidang_tujuan_ago_update" : "bidang_tujuan_ago"; ?>"
+                class="select2" data-placeholder="Bidang Tujuan">
                 <option value="">- PILIH -</option>
                 <?php foreach ($bidang as $d) { ?>
-                <option value="<?= html_escape(strtolower($d->bidang_name)); ?>">
+                <option value="<?= html_escape(strtolower($d->bidang_name)); ?>" <?php if(isset($header)){
+                        if(strtolower($header[0]->bidang_tujuan) == strtolower($d->bidang_name)){
+                            echo "selected";
+                        }
+                    } ?>>
                     <?= html_escape(strtoupper($d->bidang_name)); ?></option>
                 <?php } ?>
             </select>
-            <?php } ?>
         </div>
     </div>
     <hr />
@@ -107,33 +111,21 @@
         <h6>2. PIC Tanda Tangan</h6>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Team Leader Logistik</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->ttd_team_leader_logistik); ?>" readonly />
-            <?php } else { ?>
             <input type="text" name="ttd_team_leader_logistik" id="team_leader_logistik_ago"
+                <?= isset($header) ? "value='" . $header[0]->ttd_team_leader_logistik . "'" : ""?>
                 class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Team Leader Logistik" required />
-            <?php } ?>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Pengawas Pekerjaan</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->ttd_pengawas_pekerjaan); ?>" readonly />
-            <?php } else { ?>
             <input type="text" name="ttd_pengawas_pekerjaan" id="pengawas_pekerjaan_ago"
+                <?= isset($header) ? "value='" . $header[0]->ttd_pengawas_pekerjaan . "'" : ""?>
                 class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Pengawas Pekerjaan" required />
-            <?php } ?>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Pembawa Barang</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->ttd_pembawa_barang); ?>" readonly />
-            <?php } else { ?>
             <input type="text" name="ttd_pembawa_barang" id="pembawa_barang_ago"
+                <?= isset($header) ? "value='" . $header[0]->ttd_pembawa_barang . "'" : ""?>
                 class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Pembawa Barang" required />
-            <?php } ?>
         </div>
     </div>
     <hr />
@@ -141,65 +133,40 @@
         <h6>3. Data Material</h6>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Reservasi</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->reservasi); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="reservasi" id="reservasi_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="Reservasi" required />
-            <?php } ?>
+            <input type="text" name="reservasi" id="reservasi_ago"
+                <?= isset($header) ? "value='" . $header[0]->reservasi . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Reservasi" required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Slip Pengeluaran Barang (TUG 9 AGO)</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->slip); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="slip" id="slip_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="SLIP" required />
-            <?php } ?>
+            <input type="text" name="slip" id="slip_ago" <?= isset($header) ? "value='" . $header[0]->slip . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="SLIP" required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->no_spj); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="no_spj" id="no_spj_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="NO SPJ" required />
-            <?php } ?>
+            <input type="text" name="no_spj" id="no_spj_ago"
+                <?= isset($header) ? "value='" . $header[0]->no_spj . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="NO SPJ" required />
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Jenis Pekerjaan</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->pekerjaan); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="pekerjaan" id="pekerjaan_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="Pekerjaan" required />
-            <?php } ?>
+            <input type="text" name="pekerjaan" id="pekerjaan_ago"
+                <?= isset($header) ? "value='" . $header[0]->pekerjaan . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Pekerjaan" required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Lokasi</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->lokasi); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="lokasi" id="lokasi_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="Lokasi" required />
-            <?php } ?>
+            <input type="text" name="lokasi" id="lokasi_ago"
+                <?= isset($header) ? "value='" . $header[0]->lokasi . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Lokasi" required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
-            <?php if(isset($header)){ ?>
-            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                value="<?= strtoupper($header[0]->vendor); ?>" readonly />
-            <?php } else { ?>
-            <input type="text" name="vendor" id="vendor_ago" class="form-control form-control-solid mb-3 mb-lg-0"
-                placeholder="Vendor" required />
-            <?php } ?>
+            <input type="text" name="vendor" id="vendor_ago"
+                <?= isset($header) ? "value='" . $header[0]->vendor . "'" : ""?>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Vendor" required />
         </div>
     </div>
     <div class="row mb-4">
@@ -276,8 +243,8 @@
         <div class="row mb-4">
             <div class="col-md-6">
                 <label class="required fw-semibold fs-6 mb-2">Reservasi Aktivasi Material (AGO)</label>
-                <input type="file" name="file_reservasi" id="file_reservasion_ago" class="form-control"
-                    accept=".pdf" placeholder="Reservasi Aktivasi Material (AGO)" required />
+                <input type="file" name="file_reservasi" id="file_reservasion_ago" class="form-control" accept=".pdf"
+                    placeholder="Reservasi Aktivasi Material (AGO)" required />
             </div>
         </div>
         <div class="row mb-4">
@@ -290,11 +257,11 @@
     </div>
     <?php } ?>
     <?php if(!isset($header) || $header[0]->is_selesai == 0) { ?>
-        <div class="row mb-4">
-            <div class="col-md-12 text-end">
-                <button type="submit" class="btn btn-primary"><?= !isset($header) ? "Simpan" : "Update";?></button>
-            </div>
+    <div class="row mb-4">
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-primary"><?= !isset($header) ? "Simpan" : "Update";?></button>
         </div>
+    </div>
     <?php } ?>
 </form>
 

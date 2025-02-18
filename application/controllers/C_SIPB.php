@@ -16,7 +16,6 @@ class C_SIPB extends CI_Controller
         parent::__construct();
 
         $this->load->library('Pdf');
-        $this->load->library('Curl');
 
         if (!$this->session->userdata('username')) {
             redirect('C_Login');
@@ -53,15 +52,6 @@ class C_SIPB extends CI_Controller
         $this->template->display('satuan/index', $data);
     }
 
-    function getData()
-    {
-        $url = "http://10.3.0.185:8088/api/v.2.1/check_kr?no_kr=0169.Pj/DAN.01.02/F06050000/2024";
-        $data['url'] = $url;
-        $data['data'] = json_decode($this->curl->simple_get($url));
-        echo '<pre>'; print_r($data); echo '</pre>';
-        die();
-    }
-
     function SIPB(){
         $unit_id = $this->session->userdata('unit_id');
         $cek_sipb = $this->M_AllFunction->Where("trn_sipb_hdr", "no_sipb LIKE '" . $unit_id . "%' ORDER BY no_sipb DESC LIMIT 1");
@@ -80,13 +70,14 @@ class C_SIPB extends CI_Controller
 
     function Save(){
         $data = array(
+            "tanggal"                  => $this->input->post('tanggal', true),
             "no_sipb"                  => $this->input->post('no_sipb', true),
             "form_name"                => $this->input->post('form_name', true),
             "storage_location"         => $this->input->post('storage_location', true) ?? null,
             "plat_no"                  => $this->input->post('plat_no', true) ?? null,
             "unit_asal"                => $this->input->post('unit_asal', true) ?? null,
-            "unit_tujuan"              => $this->input->post('unit_tujuan', true) ?? null,
-            "unit_tujuan_manual"       => $this->input->post('unit_tujuan_manual', true) ?? null,
+            "unit_tujuan"              => $this->input->post('manual_destination', true) != null ? null : ($this->input->post('unit_tujuan', true) ?? null),
+            "unit_tujuan_manual"       => $this->input->post('manual_destination', true) != null ? ($this->input->post('unit_tujuan_manual', true) ?? null) : null,
             "bidang_tujuan"            => $this->input->post('bidang_tujuan', true) ?? null,
             "vendor"                   => $this->input->post('vendor', true) ?? null,
             "ttd_team_leader_logistik" => $this->input->post('ttd_team_leader_logistik', true) ?? null,
@@ -164,10 +155,10 @@ class C_SIPB extends CI_Controller
             $data["file_tug_7"]               = $array_file_name[4];
             $data["file_tug_8"]               = $array_file_name[5];
             $data["file_tug_9"]               = $array_file_name[6];
-            $data["file_tug_16"]              = $$array_file_name[7];
-            $data["file_surat_usulan_limbah"] = $$array_file_name[8];
+            $data["file_tug_16"]              = $array_file_name[7];
+            $data["file_surat_usulan_limbah"] = $array_file_name[8];
             $data["created_by"]               = $this->session->userdata('username');
-            $data["created_date"]             = $date('Y-m-d H:i:s');
+            $data["created_date"]             = date('Y-m-d H:i:s');
 
             $this->M_AllFunction->Insert('trn_sipb_hdr', $data);
 
@@ -309,6 +300,7 @@ class C_SIPB extends CI_Controller
         $data['bidang'] = $this->M_AllFunction->Get("mst_bidang");
         $data['storage_location'] = $this->M_AllFunction->Get("mst_storage_location");
         $data['vendor'] = $this->M_AllFunction->Get("mst_vendor");
+        $data['material'] = $this->M_AllFunction->CustomQuery("SELECT id, material, satuan FROM vw_material");
 
         $data['header'] = $this->M_AllFunction->Where('vw_sipb_hdr', "no_sipb = '" . $no_sipb . "'");
         $data['detail'] = $this->M_AllFunction->Where('vw_sipb_dtl', "no_sipb = '" . $no_sipb . "'");
