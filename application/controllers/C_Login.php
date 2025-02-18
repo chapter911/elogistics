@@ -92,8 +92,6 @@ class C_Login extends CI_Controller {
 			} else {
 				$email = str_replace("pusat\\", "", $email);
 				$email .= "@pln.co.id";
-				echo '<pre>'; print_r($email); echo '</pre>';
-				die();
 				$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
 
 				if(count($cek) == 0){
