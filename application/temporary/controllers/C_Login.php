@@ -90,13 +90,13 @@ class C_Login extends CI_Controller {
 				$this->session->set_flashdata('message', 'email / password Anda salah');
 				redirect('C_Login/ldap');
 			} else {
-				$email = str_replace("pusat\\", "", $email);
-				$email .= "@pln.co.id";
-				$cek = $this->M_AllFunction->Where('vw_user', "email = '$email'");
+				$email = str_replace("\\", "\\\\", $email);
+				$cek = $this->M_AllFunction->Where('vw_user', "ldap_account = '$email'");
 
 				if(count($cek) == 0){
-					$this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
-					redirect('C_Login');
+					echo "akun ldap tidak ditemukan";
+					// $this->session->set_flashdata('message', 'akun ldap tidak ditemukan');
+					// redirect('C_Login');
 				} else {
 					if($cek[0]->is_active == 0){
 						$this->session->set_flashdata('pesan', 'User Telah DiNonAktifkan');
