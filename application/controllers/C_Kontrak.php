@@ -680,7 +680,7 @@ class C_Kontrak extends CI_Controller
 
     function Save() {
         $cek = $this->M_AllFunction->Where('trn_kontrak_hdr', "no_kontrak = '" . $this->input->post('no_kontrak', true) . "'");
-        if ($cek->num_rows() > 0) {
+        if (count($cek) > 0) {
             $this->session->set_flashdata('flash_failed', 'Nomor Kontrak Sudah Ada');
             redirect("C_Kontrak/KontrakRinci");
         } else {
