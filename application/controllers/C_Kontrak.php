@@ -679,82 +679,88 @@ class C_Kontrak extends CI_Controller
     }
 
     function Save() {
-        $config['allowed_types'] = 'pdf';
-        $config['remove_spaces'] = TRUE;
-        $config['max_size'] = 10000;
+        $cek = $this->M_AllFunction->Where('trn_kontrak_hdr', "no_kontrak = '" . $this->input->post('no_kontrak', true) . "'");
+        if ($cek->num_rows() > 0) {
+            $this->session->set_flashdata('flash_failed', 'Nomor Kontrak Sudah Ada');
+            redirect("C_Kontrak/KontrakRinci");
+        } else {
+            $config['allowed_types'] = 'pdf';
+            $config['remove_spaces'] = TRUE;
+            $config['max_size'] = 10000;
 
-        $filekontrakname = "";
-        $file_kr_location = 'data_uploads/kontrak/kr/';
+            $filekontrakname = "";
+            $file_kr_location = 'data_uploads/kontrak/kr/';
 
-        $config['upload_path'] = $file_kr_location;
-        $config['file_name'] = "kr-" . bin2hex(random_bytes(24));
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
+            $config['upload_path'] = $file_kr_location;
+            $config['file_name'] = "kr-" . bin2hex(random_bytes(24));
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
 
-        if ($this->upload->do_upload('filekr')) {
-            $data = array('upload_data' => $this->upload->data());
-            $filekontrakname = $data['upload_data']['file_name'];
-        }
-
-        $data                  =  array(
-            "id_basket"         => $this->input->post('id_basket', true),
-            "tahun_anggaran"    => $this->input->post('tahun_anggaran', true),
-            "is_murni"          => $this->input->post('is_murni', true),
-            "id_skki"           => $this->input->post('id_skki', true),
-            "no_prk"            => $this->input->post('no_prk', true),
-            "no_khs"            => $this->input->post('no_khs', true),
-            "no_kontrak"        => $this->input->post('no_kontrak', true),
-            "no_po"             => $this->input->post('no_po', true),
-            "id_vendor"         => $this->input->post('id_vendor', true),
-            "awal_kontrak"      => $this->input->post('awal_kontrak', true),
-            "akhir_kontrak"     => $this->input->post('akhir_kontrak', true),
-            "nilai_kontrak"     => preg_replace('/[^0-9]/', '', $this->input->post('nilai_kontrak', true)),
-            "is_using_jm"       => $this->input->post('is_using_jm', true),
-            "file_kr"           => $filekontrakname,
-            "file_kr_location"  => $file_kr_location,
-            "createdby"         => $this->session->userdata('username'),
-            "createddate"       => date('Y-m-d H:i:s')
-        );
-
-        $id = $this->M_AllFunction->InsertGetId('trn_kontrak_hdr', $data);
-
-        for ($i = 0; $i < count($this->input->post('unit_tujuan_id', true)); $i++) {
-            $datadetail[$i] = array(
-                "id_hdr"         => $id,
-                "no_kontrak"     => $this->input->post('no_kontrak', true),
-                "unit_tujuan_id" => $this->input->post('unit_tujuan_id', true)[$i],
-                "material_id"    => $this->input->post('material', true)[$i],
-                "volume"         => $this->input->post('volume', true)[$i]
-            );
-        }
-
-        $this->M_AllFunction->InsertBatch('trn_kontrak_dtl', $datadetail);
-
-        $material = array_unique($this->input->post('material', true));
-        $arr_no = 0;
-
-        foreach ($material as $m) {
-            $index  = array_search($m, $material);
-
-            $total_vol = 0;
-            foreach($datadetail as $dtl){
-                if($m == $dtl['material_id']){
-                    $total_vol += $dtl['volume'];
-                }
+            if ($this->upload->do_upload('filekr')) {
+                $data = array('upload_data' => $this->upload->data());
+                $filekontrakname = $data['upload_data']['file_name'];
             }
 
-            $dataMaterial[$arr_no++] = array(
-                "id_hdr"      => $id,
-                "no_kontrak"  => $this->input->post('no_kontrak', true),
-                "material_id" => $m,
-                "volume"      => $total_vol,
-                "harga"       => $this->input->post('harga', true)[$index],
-                "ongkir"      => $this->input->post('ongkos', true)[$index],
-                "total"       => $this->input->post('total', true)[$index]
+            $data                  =  array(
+                "id_basket"         => $this->input->post('id_basket', true),
+                "tahun_anggaran"    => $this->input->post('tahun_anggaran', true),
+                "is_murni"          => $this->input->post('is_murni', true),
+                "id_skki"           => $this->input->post('id_skki', true),
+                "no_prk"            => $this->input->post('no_prk', true),
+                "no_khs"            => $this->input->post('no_khs', true),
+                "no_kontrak"        => $this->input->post('no_kontrak', true),
+                "no_po"             => $this->input->post('no_po', true),
+                "id_vendor"         => $this->input->post('id_vendor', true),
+                "awal_kontrak"      => $this->input->post('awal_kontrak', true),
+                "akhir_kontrak"     => $this->input->post('akhir_kontrak', true),
+                "nilai_kontrak"     => preg_replace('/[^0-9]/', '', $this->input->post('nilai_kontrak', true)),
+                "is_using_jm"       => $this->input->post('is_using_jm', true),
+                "file_kr"           => $filekontrakname,
+                "file_kr_location"  => $file_kr_location,
+                "createdby"         => $this->session->userdata('username'),
+                "createddate"       => date('Y-m-d H:i:s')
             );
-        }
 
-        $this->M_AllFunction->InsertBatch('trn_kontrak_material', $dataMaterial);
+            $id = $this->M_AllFunction->InsertGetId('trn_kontrak_hdr', $data);
+
+            for ($i = 0; $i < count($this->input->post('unit_tujuan_id', true)); $i++) {
+                $datadetail[$i] = array(
+                    "id_hdr"         => $id,
+                    "no_kontrak"     => $this->input->post('no_kontrak', true),
+                    "unit_tujuan_id" => $this->input->post('unit_tujuan_id', true)[$i],
+                    "material_id"    => $this->input->post('material', true)[$i],
+                    "volume"         => $this->input->post('volume', true)[$i]
+                );
+            }
+
+            $this->M_AllFunction->InsertBatch('trn_kontrak_dtl', $datadetail);
+
+            $material = array_unique($this->input->post('material', true));
+            $arr_no = 0;
+
+            foreach ($material as $m) {
+                $index  = array_search($m, $material);
+
+                $total_vol = 0;
+                foreach($datadetail as $dtl){
+                    if($m == $dtl['material_id']){
+                        $total_vol += $dtl['volume'];
+                    }
+                }
+
+                $dataMaterial[$arr_no++] = array(
+                    "id_hdr"      => $id,
+                    "no_kontrak"  => $this->input->post('no_kontrak', true),
+                    "material_id" => $m,
+                    "volume"      => $total_vol,
+                    "harga"       => $this->input->post('harga', true)[$index],
+                    "ongkir"      => $this->input->post('ongkos', true)[$index],
+                    "total"       => $this->input->post('total', true)[$index]
+                );
+            }
+
+            $this->M_AllFunction->InsertBatch('trn_kontrak_material', $dataMaterial);
+        }
         redirect("C_Kontrak/KontrakRinci");
     }
 
