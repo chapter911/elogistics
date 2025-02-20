@@ -575,7 +575,7 @@ class C_Pengiriman extends CI_Controller {
                         C.slip_penerimaan,
                         C.no_persediaan,
                         C.tanggal_persediaan,
-                        CONCAT(B.directory, B.filename) AS pdf,
+                        CONCAT(B.directory, '/', B.filename) AS pdf,
                         CONCAT(B.directory, '/', B.foto1) AS foto1,
                         CONCAT(B.directory, '/', B.foto2) AS foto2
                     FROM
