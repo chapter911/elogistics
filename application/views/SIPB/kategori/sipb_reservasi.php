@@ -157,7 +157,7 @@
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
             <select name="no_spj"
                 id="<?= isset($header) ? "no_spj_reservasi_update" : "no_spj_reservasi"; ?>"
-                class="select2" data-placeholder="Bidang Tujuan">
+                class="select2" data-placeholder="NO SPJ">
                 <option value="">- PILIH -</option>
                 <?php foreach ($kr as $d) { ?>
                 <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
@@ -165,7 +165,7 @@
                             echo "selected";
                         }
                     } ?>>
-                    <?= html_escape(strtoupper($d->no_spj)); ?></option>
+                    <?= html_escape(strtoupper($d->no_kr)); ?></option>
                 <?php } ?>
             </select>
         </div>
