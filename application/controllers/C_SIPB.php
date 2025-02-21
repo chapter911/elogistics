@@ -68,7 +68,7 @@ class C_SIPB extends CI_Controller
 
         $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
         $data = json_decode($this->curl->simple_get($url));
-        echo '<pre>'; print_r($data); echo '</pre>';
+        echo '<pre>'; print_r($data->data); echo '</pre>';
         die();
 
         $cek_kr = $this->M_AllFunction->Get("trn_sync_kr");
