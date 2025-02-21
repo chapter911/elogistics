@@ -146,7 +146,7 @@
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
             <select name="no_spj"
                 id="<?= isset($header) ? "no_spj_ago_update" : "no_spj_ago"; ?>"
-                class="select2" data-placeholder="NO SPJ" onchange="getVendor(this)">
+                class="select2" data-placeholder="NO SPJ" onchange="getVendorAgo(this)">
                 <option value="">- PILIH -</option>
                 <?php foreach ($kr as $d) { ?>
                 <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
@@ -337,7 +337,7 @@ $(document).ready(function() {
 });
 <?php } ?>
 
-function getVendor(loc) {
+function getVendorAgo(loc) {
     var no_spj = $(loc).val();
     $.ajax({
         url: "<?= base_url(); ?>C_SIPB/getSPJVendor",
