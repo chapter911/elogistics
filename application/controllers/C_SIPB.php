@@ -101,7 +101,7 @@ class C_SIPB extends CI_Controller
     function getSPJVendor(){
         $no_spj = $this->input->post('no_spj', true);
         $data = $this->M_AllFunction->CustomQuery("SELECT nama_vendor FROM trn_sync_kr WHERE no_kr = '" . $no_spj . "'");
-        echo json_encode($data);
+        echo $data[0]->nama_vendor;
     }
 
     function Save(){
