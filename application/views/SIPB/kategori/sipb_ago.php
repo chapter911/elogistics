@@ -347,7 +347,7 @@ function getVendor(loc) {
             <?=$this->security->get_csrf_token_name();?>: "<?=$this->security->get_csrf_hash();?>"
         },
         success: function(data) {
-            $('#vendor_reservasi').val(data);
+            $('#vendor_ago').val(data);
         }
     });
 }
