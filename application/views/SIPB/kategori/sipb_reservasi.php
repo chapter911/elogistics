@@ -200,7 +200,7 @@
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_reservasi" class="form-control mb-3 mb-lg-0"
-                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required />
+                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required readonly/>
         </div>
     </div>
     <div class="row mb-4">
