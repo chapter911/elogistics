@@ -82,9 +82,8 @@ class C_SIPB extends CI_Controller
 
         if($is_update){
             $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
-            $data = json_decode($this->curl->simple_get($url));
-            $data_kr = $data->data;
-            foreach ($data_kr as $d) {
+            $data_kr = json_decode($this->curl->simple_get($url));
+            foreach ($data_kr->data as $d) {
                 $kr = array(
                     "no_kr"       => $d->no_kr,
                     "id_vendor"   => $d->id_vendor,
