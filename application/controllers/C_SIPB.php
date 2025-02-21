@@ -66,27 +66,35 @@ class C_SIPB extends CI_Controller
         $data['vendor'] = $this->M_AllFunction->Get("mst_vendor");
         $data['material'] = $this->M_AllFunction->CustomQuery("SELECT id, material, satuan FROM vw_material");
 
-        $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
-        $data = json_decode($this->curl->simple_get($url));
-        echo '<pre>'; print_r($data->data); echo '</pre>';
-        die();
-
+        $is_update = false;
         $cek_kr = $this->M_AllFunction->Get("trn_sync_kr");
         if(count($cek_kr) == 0){
-            $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
-            $data = json_decode($this->curl->simple_get($url));
+            $is_update = true;
         } else {
             $last_updated = strtotime($cek_kr[0]->updated_date);
             $current_time = strtotime(date('Y-m-d H:i:s'));
             $time_difference = ($current_time - $last_updated) / 60; // difference in minutes
 
             if($time_difference > 20){
-                $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
-                $data = json_decode($this->curl->simple_get($url));
-            } else {
+                $is_update = true;
             }
         }
-        echo '<pre>'; print_r($data); echo '</pre>';
+
+        if($is_update){
+            $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
+            $data = json_decode($this->curl->simple_get($url));
+            foreach ($data->data as $d) {
+                $kr = array(
+                    "no_kr"       => $d->no_kr,
+                    "id_vendor"   => $d->id_vendor,
+                    "nama_vendor" => $d->nama_vendor,
+                    "status_kr"   => $d->status_kr,
+                );
+                $this->M_AllFunction->Replace('trn_sync_kr', $kr);
+            }
+        }
+
+        $data['kr'] = $this->M_AllFunction->Where("trn_sync_kr", "status_kr = 'On Progress'");
         $this->template->display('SIPB/sipb', $data);
     }
 
