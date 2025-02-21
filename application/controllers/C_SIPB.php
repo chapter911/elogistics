@@ -67,7 +67,7 @@ class C_SIPB extends CI_Controller
         $data['material'] = $this->M_AllFunction->CustomQuery("SELECT id, material, satuan FROM vw_material");
 
         $is_update = false;
-        $cek_kr = $this->M_AllFunction->Get("trn_sync_kr");
+        $cek_kr = $this->M_AllFunction->CustomQuery("SELECT MAX(updated_date) AS updated_date FROM trn_sync_kr");
         if(count($cek_kr) == 0){
             $is_update = true;
         } else {
