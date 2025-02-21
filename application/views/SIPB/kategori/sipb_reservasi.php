@@ -367,7 +367,8 @@ function getVendor(loc) {
         url: "<?= base_url(); ?>C_SIPB/getSPJVendor",
         type: "POST",
         data: {
-            no_spj: no_spj
+            no_spj: no_spj,
+            <?=$this->security->get_csrf_token_name();?>: "<?=$this->security->get_csrf_hash();?>"
         },
         success: function(data) {
             $('#vendor_reservasi').val(data);
