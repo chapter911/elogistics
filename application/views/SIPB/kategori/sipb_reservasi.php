@@ -155,9 +155,19 @@
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <input type="text" name="no_spj" id="no_spj_reservasi"
-                value="<?= isset($header) ? strtoupper($header[0]->no_spj) : ""; ?>"
-                class="form-control mb-3 mb-lg-0" placeholder="NO SPJ" required />
+            <select name="no_spj"
+                id="<?= isset($header) ? "no_spj_reservasi_update" : "no_spj_reservasi"; ?>"
+                class="select2" data-placeholder="Bidang Tujuan">
+                <option value="">- PILIH -</option>
+                <?php foreach ($kr as $d) { ?>
+                <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
+                        if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
+                            echo "selected";
+                        }
+                    } ?>>
+                    <?= html_escape(strtoupper($d->no_spj)); ?></option>
+                <?php } ?>
+            </select>
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO WBS / ORDER</label>
@@ -343,6 +353,9 @@ $(document).ready(function() {
         dropdownParent: $('#createApp2')
     });
     $('#bidang_tujuan_reservasi_update').select2({
+        dropdownParent: $('#createApp2')
+    });
+    $('#no_spj_reservasi_update').select2({
         dropdownParent: $('#createApp2')
     });
 });
