@@ -65,6 +65,28 @@ class C_SIPB extends CI_Controller
         $data['storage_location'] = $this->M_AllFunction->Get("mst_storage_location");
         $data['vendor'] = $this->M_AllFunction->Get("mst_vendor");
         $data['material'] = $this->M_AllFunction->CustomQuery("SELECT id, material, satuan FROM vw_material");
+
+        $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
+        $data = json_decode($this->curl->simple_get($url));
+        echo '<pre>'; print_r($data); echo '</pre>';
+        die();
+
+        $cek_kr = $this->M_AllFunction->Get("trn_sync_kr");
+        if(count($cek_kr) == 0){
+            $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
+            $data = json_decode($this->curl->simple_get($url));
+        } else {
+            $last_updated = strtotime($cek_kr[0]->updated_date);
+            $current_time = strtotime(date('Y-m-d H:i:s'));
+            $time_difference = ($current_time - $last_updated) / 60; // difference in minutes
+
+            if($time_difference > 20){
+                $url = "http://10.3.0.185:8088/api/v.2.1/list-kr";
+                $data = json_decode($this->curl->simple_get($url));
+            } else {
+            }
+        }
+        echo '<pre>'; print_r($data); echo '</pre>';
         $this->template->display('SIPB/sipb', $data);
     }
 
