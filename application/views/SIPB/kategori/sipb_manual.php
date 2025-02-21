@@ -341,4 +341,19 @@ $(document).ready(function() {
         }
     }
 });
+
+function getVendor(loc) {
+    var no_spj = $(loc).val();
+    $.ajax({
+        url: "<?= base_url(); ?>C_SIPB/getSPJVendor",
+        type: "POST",
+        data: {
+            no_spj: no_spj,
+            <?=$this->security->get_csrf_token_name();?>: "<?=$this->security->get_csrf_hash();?>"
+        },
+        success: function(data) {
+            $('#vendor_reservasi').val(data);
+        }
+    });
+}
 </script>
