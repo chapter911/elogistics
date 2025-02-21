@@ -144,9 +144,19 @@
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <input type="text" name="no_spj" id="no_spj_ago"
-                <?= isset($header) ? "value='" . $header[0]->no_spj . "'" : ""?>
-                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="NO SPJ" required />
+            <select name="no_spj"
+                id="<?= isset($header) ? "no_spj_ago_update" : "no_spj_ago"; ?>"
+                class="select2" data-placeholder="NO SPJ" onchange="getVendor(this)">
+                <option value="">- PILIH -</option>
+                <?php foreach ($kr as $d) { ?>
+                <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
+                        if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
+                            echo "selected";
+                        }
+                    } ?>>
+                    <?= html_escape(strtoupper($d->no_kr)); ?></option>
+                <?php } ?>
+            </select>
         </div>
     </div>
     <div class="row mb-4">
@@ -166,7 +176,7 @@
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_ago"
                 <?= isset($header) ? "value='" . $header[0]->vendor . "'" : ""?>
-                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Vendor" required />
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Vendor" required readonly/>
         </div>
     </div>
     <div class="row mb-4">
@@ -319,6 +329,9 @@ $(document).ready(function() {
         dropdownParent: $('#createApp2')
     });
     $('#bidang_tujuan_ago_update').select2({
+        dropdownParent: $('#createApp2')
+    });
+    $('#no_spj_ago_update').select2({
         dropdownParent: $('#createApp2')
     });
 });
