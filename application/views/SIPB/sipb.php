@@ -224,7 +224,7 @@
                                         </div>
                                     </div>
                                     <br/>
-                                    <div id="btn_simpan" class="text-end">
+                                    <div id="btn_simpan_tug" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
@@ -384,6 +384,7 @@ function detail(no_sipb, form_name, is_selesai){
             Swal.close();
             $('#file_dokumen').hide();
             $('#btn_simpan').hide();
+            $('#btn_simpan_tug').hide();
             $('#detail_container').html(response);
             $('#downloadSIPB').attr('href', '<?= base_url() ?>C_SIPB/downloadSIPB/' + no_sipb);
             $('input[name="no_sipb_update"]').val(no_sipb);
@@ -391,7 +392,7 @@ function detail(no_sipb, form_name, is_selesai){
             if(is_selesai == false){
                 if(form_name == "reservasi" || form_name == "ago" || form_name == "manual"){
                     $('#file_dokumen').show();
-                    $('#btn_simpan').hide();
+                    $('#btn_simpan_tug').show();
                     $('#visible_tug_9').show();
                 } else {
                     $('#visible_tug_9').hide();
