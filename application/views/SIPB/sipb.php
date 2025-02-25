@@ -397,6 +397,7 @@ function detail(no_sipb, form_name, is_selesai){
                 } else {
                     $('#visible_tug_9').hide();
                 }
+                $('#btn_simpan').show();
                 $('#visible_sipb').show();
             } else {
                 $('#visible_sipb').hide();
