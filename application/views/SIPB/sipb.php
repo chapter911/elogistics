@@ -199,7 +199,7 @@
                                 <button type="button" class="step-trigger">
                                     <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
                                     <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title text-uppercase">SIPB</span>
+                                        <span class="bs-stepper-title text-uppercase">Upload SIPB</span>
                                     </span>
                                 </button>
                             </div>
@@ -388,7 +388,7 @@ function detail(no_sipb, form_name, is_selesai){
             $('#detail_container').html(response);
             $('#downloadSIPB').attr('href', '<?= base_url() ?>C_SIPB/downloadSIPB/' + no_sipb);
             $('input[name="no_sipb_update"]').val(no_sipb);
-            $('#label_sipb').html("SIPB / " + form_name);
+            $('#label_sipb').html("Edit SIPB / " + form_name);
             if(is_selesai == false){
                 if(form_name == "reservasi" || form_name == "ago" || form_name == "manual"){
                     $('#file_dokumen').show();
