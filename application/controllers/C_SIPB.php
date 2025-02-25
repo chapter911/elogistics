@@ -105,6 +105,8 @@ class C_SIPB extends CI_Controller
     }
 
     function Save(){
+        echo '<pre>'; print_r($_POST); echo '</pre>';
+        die();
         $data = array(
             "tanggal"                  => $this->input->post('tanggal', true),
             "no_sipb"                  => $this->input->post('no_sipb', true),
