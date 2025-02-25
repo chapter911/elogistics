@@ -337,6 +337,7 @@ class C_SIPB extends CI_Controller
         $data['storage_location'] = $this->M_AllFunction->Get("mst_storage_location");
         $data['vendor'] = $this->M_AllFunction->Get("mst_vendor");
         $data['material'] = $this->M_AllFunction->CustomQuery("SELECT id, material, satuan FROM vw_material");
+        $data['kr'] = $this->M_AllFunction->Where("trn_sync_kr", "status_kr = 'On Progress'");
 
         $data['header'] = $this->M_AllFunction->Where('vw_sipb_hdr', "no_sipb = '" . $no_sipb . "'");
         $data['detail'] = $this->M_AllFunction->Where('vw_sipb_dtl', "no_sipb = '" . $no_sipb . "'");
