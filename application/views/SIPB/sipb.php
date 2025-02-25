@@ -390,6 +390,7 @@ function detail(no_sipb, form_name, is_selesai){
             $('#label_sipb').html("SIPB / " + form_name);
             if(is_selesai == false){
                 if(form_name == "reservasi" || form_name == "ago" || form_name == "manual"){
+                    $('#file_dokumen').show();
                     $('#visible_tug_9').show();
                 } else {
                     $('#visible_tug_9').hide();
