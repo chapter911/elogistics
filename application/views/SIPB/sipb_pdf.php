@@ -259,6 +259,7 @@ $html = '
 
 <br/>
 <br/>
+<br/>
 
 <table class="footer-table">
     <tr>
