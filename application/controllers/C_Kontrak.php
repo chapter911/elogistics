@@ -840,7 +840,7 @@ class C_Kontrak extends CI_Controller
                             if($d[0] == $header[$i][11]){
                                 $volume     = str_replace(['.', ','], '', $d[4]);
                                 $harga      = str_replace(['.', ','], '', $d[5]);
-                                $ongkir     = str_replace('-', '', str_replace(['.', ','], '', $d[6]));
+                                $ongkir     = str_replace('-', 0, str_replace(['.', ','], '', $d[6]));
                                 $total      = ($volume * ($harga + $ongkir)) * 1.11;
                                 if(!in_array($d[3], $material)){
                                     $material[] = $d[3];
