@@ -260,6 +260,7 @@ $html = '
 <br/>
 <br/>
 <br/>
+<br/>
 
 <table class="footer-table">
     <tr>
