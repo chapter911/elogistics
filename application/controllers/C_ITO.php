@@ -107,6 +107,7 @@ class C_ITO extends CI_Controller {
     }
 
     public function import(){
+        ini_set('max_execution_time', 9999);
         $config['allowed_types'] = 'xls|xlsx';
         $config['remove_spaces'] = TRUE;
         $config['max_size'] = 10000;
