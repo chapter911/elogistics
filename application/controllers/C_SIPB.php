@@ -370,12 +370,12 @@ class C_SIPB extends CI_Controller
 
             $row[] = $no++;
             $row[] = html_escape($h->no_sipb);
-            $row[] = strtoupper(str_replace("_", " ", html_escape($h->form_name)));
-            $row[] = html_escape(strtoupper($h->no_spj));
             $row[] = html_escape($h->tanggal);
+            $row[] = strtoupper(str_replace("_", " ", html_escape($h->form_name)));
             $row[] = html_escape($h->unit_asal_name);
             $row[] = html_escape($h->unit_tujuan_name);
             $row[] = html_escape(strtoupper($h->bidang_tujuan));
+            $row[] = html_escape(strtoupper($h->no_spj));
             $row[] = html_escape($h->vendor);
 
             $array_file = array(

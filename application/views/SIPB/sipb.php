@@ -59,12 +59,12 @@
                         <tr style="background-color: #008B8B">
                             <th style="text-align: center; color: white">#</th>
                             <th style="text-align: center; color: white">NO SIPB</th>
-                            <th style="text-align: center; color: white">KATEGORI</th>
-                            <th style="text-align: center; color: white">NO SPJ</th>
                             <th style="text-align: center; color: white">TANGGAL SIPB</th>
+                            <th style="text-align: center; color: white">KATEGORI</th>
                             <th style="text-align: center; color: white">UNIT</th>
                             <th style="text-align: center; color: white">TUJUAN</th>
                             <th style="text-align: center; color: white">BIDANG TUJUAN</th>
+                            <th style="text-align: center; color: white">NO SPJ</th>
                             <th style="text-align: center; color: white">VENDOR</th>
                             <th style="text-align: center; color: white">DOKUMEN</th>
                             <th style="text-align: center; color: white">STATUS</th>
