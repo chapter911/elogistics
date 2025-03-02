@@ -4,6 +4,7 @@ date_default_timezone_set('Asia/Jakarta');
 
 /**
  * @property M_AllFunction $M_AllFunction
+ * @property M_SIPB $M_SIPB
  * @property Session $session
  * @property Template $template
  * @property Uri $uri
@@ -16,6 +17,8 @@ class C_SIPB extends CI_Controller
         parent::__construct();
 
         $this->load->library('Pdf');
+
+        $this->load->model(array("M_AllFunction", "M_SIPB"));
 
         if (!$this->session->userdata('username')) {
             redirect('C_Login');
