@@ -260,18 +260,93 @@ class C_SIPB extends CI_Controller
                 "updated_by"          => $this->session->userdata('username'),
                 "updated_date"        => date('Y-m-d H:i:s')
             );
-        } else if($this->input->post('form_name') == "file_tug9"){
-            if (!$this->upload->do_upload('file_tug9')) {
+        } else if($this->input->post('form_name') == "file_tug_3"){
+            if (!$this->upload->do_upload('file_tug_3')) {
+                $errornya = $this->upload->display_errors();
+                $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 3.' . $errornya);
+                return redirect('C_SIPB/SIPB');
+            } else {
+                $extension = end(explode(".", $_FILES['file_tug_3']['name']));
+                $file_name .= "." . $extension;
+            }
+
+            $data = array(
+                "file_tug_3"           => $file_name,
+                "updated_by"          => $this->session->userdata('username'),
+                "updated_date"        => date('Y-m-d H:i:s')
+            );
+        } else if($this->input->post('form_name') == "file_tug_5"){
+            if (!$this->upload->do_upload('file_tug_5')) {
+                $errornya = $this->upload->display_errors();
+                $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 5.' . $errornya);
+                return redirect('C_SIPB/SIPB');
+            } else {
+                $extension = end(explode(".", $_FILES['file_tug_5']['name']));
+                $file_name .= "." . $extension;
+            }
+
+            $data = array(
+                "file_tug_5"           => $file_name,
+                "updated_by"          => $this->session->userdata('username'),
+                "updated_date"        => date('Y-m-d H:i:s')
+            );
+        } else if($this->input->post('form_name') == "file_tug_7"){
+            if (!$this->upload->do_upload('file_tug_7')) {
+                $errornya = $this->upload->display_errors();
+                $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 7.' . $errornya);
+                return redirect('C_SIPB/SIPB');
+            } else {
+                $extension = end(explode(".", $_FILES['file_tug_7']['name']));
+                $file_name .= "." . $extension;
+            }
+
+            $data = array(
+                "file_tug_7"           => $file_name,
+                "updated_by"          => $this->session->userdata('username'),
+                "updated_date"        => date('Y-m-d H:i:s')
+            );
+        } else if($this->input->post('form_name') == "file_tug_8"){
+            if (!$this->upload->do_upload('file_tug_8')) {
+                $errornya = $this->upload->display_errors();
+                $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 8.' . $errornya);
+                return redirect('C_SIPB/SIPB');
+            } else {
+                $extension = end(explode(".", $_FILES['file_tug_8']['name']));
+                $file_name .= "." . $extension;
+            }
+
+            $data = array(
+                "file_tug_8"           => $file_name,
+                "updated_by"          => $this->session->userdata('username'),
+                "updated_date"        => date('Y-m-d H:i:s')
+            );
+        } else if($this->input->post('form_name') == "file_tug_9"){
+            if (!$this->upload->do_upload('file_tug_9')) {
                 $errornya = $this->upload->display_errors();
                 $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 9.' . $errornya);
                 return redirect('C_SIPB/SIPB');
             } else {
-                $extension = end(explode(".", $_FILES['file_tug9']['name']));
+                $extension = end(explode(".", $_FILES['file_tug_9']['name']));
                 $file_name .= "." . $extension;
             }
 
             $data = array(
                 "file_tug_9"           => $file_name,
+                "updated_by"          => $this->session->userdata('username'),
+                "updated_date"        => date('Y-m-d H:i:s')
+            );
+        } else if($this->input->post('form_name') == "file_tug_16"){
+            if (!$this->upload->do_upload('file_tug_16')) {
+                $errornya = $this->upload->display_errors();
+                $this->session->set_flashdata('flash_failed', 'Maaf Error Ketika Upload File TUG 16.' . $errornya);
+                return redirect('C_SIPB/SIPB');
+            } else {
+                $extension = end(explode(".", $_FILES['file_tug_16']['name']));
+                $file_name .= "." . $extension;
+            }
+
+            $data = array(
+                "file_tug_16"           => $file_name,
                 "updated_by"          => $this->session->userdata('username'),
                 "updated_date"        => date('Y-m-d H:i:s')
             );

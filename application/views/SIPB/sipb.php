@@ -279,6 +279,94 @@
                         <div id="detail_sipb" class="content pt-4 pt-lg-0">
                             <div id="detail_container"></div>
                         </div>
+                        <div id="detail_tug_3" class="content pt-4 pt-lg-0">
+                            <div class="col-md-4">
+                                <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <div class="row">
+                                        <div id="file_dokumen" class="row mb-4">
+                                            <div class="col">
+                                                <label class="required fw-semibold fs-6 mb-2">TUG 3</label>
+                                                <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_3" required />
+                                                <input type="file" name="file_tug_3" id="file_tug_3" class="form-control" accept=".pdf" placeholder="TUG 3" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="btn_simpan_tug_3" class="text-end">
+                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="detail_tug_5" class="content pt-4 pt-lg-0">
+                            <div class="col-md-4">
+                                <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <div class="row">
+                                        <div id="file_dokumen" class="row mb-4">
+                                            <div class="col">
+                                                <label class="required fw-semibold fs-6 mb-2">TUG 5</label>
+                                                <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_5" required />
+                                                <input type="file" name="file_tug_5" id="file_tug_5" class="form-control" accept=".pdf" placeholder="TUG 5" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="btn_simpan_tug_5" class="text-end">
+                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="detail_tug_7" class="content pt-4 pt-lg-0">
+                            <div class="col-md-4">
+                                <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <div class="row">
+                                        <div id="file_dokumen" class="row mb-4">
+                                            <div class="col">
+                                                <label class="required fw-semibold fs-6 mb-2">TUG 7</label>
+                                                <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_7" required />
+                                                <input type="file" name="file_tug_7" id="file_tug_7" class="form-control" accept=".pdf" placeholder="TUG 7" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="btn_simpan_tug_7" class="text-end">
+                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="detail_tug_8" class="content pt-4 pt-lg-0">
+                            <div class="col-md-4">
+                                <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <div class="row">
+                                        <div id="file_dokumen" class="row mb-4">
+                                            <div class="col">
+                                                <label class="required fw-semibold fs-6 mb-2">TUG 8</label>
+                                                <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_8" required />
+                                                <input type="file" name="file_tug_8" id="file_tug_8" class="form-control" accept=".pdf" placeholder="TUG 8" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="btn_simpan_tug_8" class="text-end">
+                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div id="detail_tug_9" class="content pt-4 pt-lg-0">
                             <div class="col-md-4">
                                 <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
@@ -288,13 +376,35 @@
                                             <div class="col">
                                                 <label class="required fw-semibold fs-6 mb-2">TUG 9</label>
                                                 <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
-                                                <input type="hidden" name="form_name" class="form-control" value="file_tug9" required />
-                                                <input type="file" name="file_tug9" id="file_tug9" class="form-control" accept=".pdf" placeholder="TUG 9" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_9" required />
+                                                <input type="file" name="file_tug_9" id="file_tug_9" class="form-control" accept=".pdf" placeholder="TUG 9" required />
                                             </div>
                                         </div>
                                     </div>
                                     <br/>
-                                    <div id="btn_simpan_tug" class="text-end">
+                                    <div id="btn_simpan_tug_9" class="text-end">
+                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="detail_tug_16" class="content pt-4 pt-lg-0">
+                            <div class="col-md-4">
+                                <form class="form" action="<?= base_url(); ?>C_SIPB/Update" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                    <div class="row">
+                                        <div id="file_dokumen" class="row mb-4">
+                                            <div class="col">
+                                                <label class="required fw-semibold fs-6 mb-2">TUG 16</label>
+                                                <input type="hidden" name="no_sipb_update" class="form-control" placeholder="NO SIPB" required />
+                                                <input type="hidden" name="form_name" class="form-control" value="file_tug_16" required />
+                                                <input type="file" name="file_tug_16" id="file_tug_16" class="form-control" accept=".pdf" placeholder="TUG 16" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div id="btn_simpan_tug_16" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
@@ -456,7 +566,12 @@ function detail(no_sipb, form_name, is_selesai){
             Swal.close();
             $('#file_dokumen').hide();
             $('#btn_simpan').hide();
-            $('#btn_simpan_tug').hide();
+            $('#btn_simpan_tug_3').hide();
+            $('#btn_simpan_tug_5').hide();
+            $('#btn_simpan_tug_7').hide();
+            $('#btn_simpan_tug_8').hide();
+            $('#btn_simpan_tug_9').hide();
+            $('#btn_simpan_tug_16').hide();
             $('#detail_container').html(response);
             $('#downloadSIPB').attr('href', '<?= base_url() ?>C_SIPB/downloadSIPB/' + no_sipb);
             $('input[name="no_sipb_update"]').val(no_sipb);
@@ -464,7 +579,7 @@ function detail(no_sipb, form_name, is_selesai){
             if(is_selesai == false){
                 if(form_name == "reservasi" || form_name == "ago" || form_name == "manual"){
                     $('#file_dokumen').show();
-                    $('#btn_simpan_tug').show();
+                    $('#btn_simpan_tug_9').show();
                     $('#visible_tug_9').show();
                 } else {
                     $('#visible_tug_9').hide();
