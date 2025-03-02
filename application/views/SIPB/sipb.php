@@ -58,9 +58,9 @@
                     <thead>
                         <tr style="background-color: #008B8B">
                             <th style="text-align: center; color: white">NO SIPB</th>
+                            <th style="text-align: center; color: white">KATEGORI</th>
                             <th style="text-align: center; color: white">NO SPJ</th>
                             <th style="text-align: center; color: white">TANGGAL SIPB</th>
-                            <th style="text-align: center; color: white">KATEGORI</th>
                             <th style="text-align: center; color: white">UNIT</th>
                             <th style="text-align: center; color: white">TUJUAN</th>
                             <th style="text-align: center; color: white">BIDANG TUJUAN</th>
@@ -289,7 +289,7 @@ $(document).ready(function() {
             "headerOffset": $('.layout-navbar').height() + 15
         },
         "columnDefs": [{
-            "targets": [0, 1, 7, 8],
+            "targets": [0, 1, 9, 10],
             "className": "text-center"
         }],
         "pageLength": 10,
