@@ -33,7 +33,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-4"></div>
+                <div class="col-1">
+                    <div class="fv-row mb-7">
+                        <label class="fw-semibold fs-6 mb-2">&nbsp;</label>
+                        <button type="reset" class="btn btn-primary btn-block form-control">
+                            <i class="fa-solid fa-file-excel"></i> &nbsp; Reset
+                        </button>
+                    </div>
+                </div>
+                <div class="col-3"></div>
                 <div class="col-2">
                     <div class="fv-row mb-7">
                         <label class="fw-semibold fs-6 mb-2">&nbsp;</label>
