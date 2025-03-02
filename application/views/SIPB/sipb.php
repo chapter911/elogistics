@@ -36,8 +36,8 @@
                 <div class="col-1">
                     <div class="fv-row mb-7">
                         <label class="fw-semibold fs-6 mb-2">&nbsp;</label>
-                        <button type="reset" class="btn btn-primary btn-block form-control" onclick="filterData()">
-                            <i class="fa-solid fa-file-excel"></i> &nbsp; Reset
+                        <button type="reset" class="btn btn-primary btn-block form-control" onclick="reset()">
+                            Reset
                         </button>
                     </div>
                 </div>
@@ -329,6 +329,12 @@ $(document).ready(function() {
 
 function filterData() {
     table.ajax.reload();
+}
+
+function reset(){
+    $('#unit_asal').val('*').trigger('change');
+    $('#unit_tujuan').val('*').trigger('change');
+    filterData();
 }
 
 function resetForm(){
