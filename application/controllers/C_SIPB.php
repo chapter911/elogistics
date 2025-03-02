@@ -10,6 +10,9 @@ date_default_timezone_set('Asia/Jakarta');
  * @property Uri $uri
  */
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class C_SIPB extends CI_Controller
 {
     function __construct()
