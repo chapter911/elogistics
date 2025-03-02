@@ -286,9 +286,12 @@ class C_SIPB extends CI_Controller
 
         $data['data'] = array();
 
+        $no = 1;
+
         foreach ($hasil as $h) {
             $row = array();
 
+            $row[] = $no++;
             $row[] = html_escape($h->no_sipb);
             $row[] = strtoupper(str_replace("_", " ", html_escape($h->form_name)));
             $row[] = html_escape(strtoupper($h->no_spj));

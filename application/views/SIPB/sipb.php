@@ -57,6 +57,7 @@
                 <table id="table" class="table">
                     <thead>
                         <tr style="background-color: #008B8B">
+                            <th style="text-align: center; color: white">#</th>
                             <th style="text-align: center; color: white">NO SIPB</th>
                             <th style="text-align: center; color: white">KATEGORI</th>
                             <th style="text-align: center; color: white">NO SPJ</th>
@@ -289,7 +290,7 @@ $(document).ready(function() {
             "headerOffset": $('.layout-navbar').height() + 15
         },
         "columnDefs": [{
-            "targets": [0, 1, 9, 10],
+            "targets": [0, 1, 2, 10, 11],
             "className": "text-center"
         }],
         "pageLength": 10,
