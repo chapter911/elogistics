@@ -58,6 +58,8 @@
                     <thead>
                         <tr style="background-color: #008B8B">
                             <th style="text-align: center; color: white">NO SIPB</th>
+                            <th style="text-align: center; color: white">NO SPJ</th>
+                            <th style="text-align: center; color: white">TANGGAL SIPB</th>
                             <th style="text-align: center; color: white">KATEGORI</th>
                             <th style="text-align: center; color: white">UNIT</th>
                             <th style="text-align: center; color: white">TUJUAN</th>
