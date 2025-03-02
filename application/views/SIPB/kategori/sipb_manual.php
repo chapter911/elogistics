@@ -171,19 +171,35 @@
     <div class="row mb-4">
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <select name="no_spj"
-                id="<?= isset($header) ? "no_spj_manual_update" : "no_spj_manual"; ?>"
-                class="select2" data-placeholder="NO SPJ" onchange="getVendorManual(this)">
-                <option value="">- PILIH -</option>
-                <?php foreach ($kr as $d) { ?>
-                <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
-                        if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
-                            echo "selected";
-                        }
-                    } ?>>
-                    <?= html_escape(strtoupper($d->no_kr)); ?></option>
-                <?php } ?>
-            </select>
+            <div <?= isset($header) ? "id='select2_spj_manual_update'" : "id='select2_spj_manual'"?>>
+                <select name="no_spj"
+                    id="<?= isset($header) ? "no_spj_manual_update" : "no_spj_manual"; ?>"
+                    class="select2" data-placeholder="NO SPJ" onchange="getVendorManual(this)">
+                    <option value="">- PILIH -</option>
+                    <?php foreach ($kr as $d) { ?>
+                    <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
+                            if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
+                                echo "selected";
+                            }
+                        } ?>>
+                        <?= html_escape(strtoupper($d->no_kr)); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div <?= isset($header) ? "id='manual_no_spj_manual_update'" : "id='manual_no_spj_manual'"?>
+                style="display: none;">
+                <input type="text" name="no_spj_manual" id="no_spj_manual_manual"
+                    class="form-control form-control-solid mb-3 mb-lg-0" placeholder="No SPJ Manual"
+                    <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "value='" . $header[0]->no_spj  . "'" : "" ?> />
+            </div>
+            <div class="row mt-2">
+                <div>
+                    <input type="checkbox" name="is_spj_manual" id="manual_spj_manual" class="form-check-input"
+                        <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "checked" : "" ?>
+                        onchange="setSPJManualManual(this)" />
+                    <label class="required fw-semibold fs-6 mb-2">Gunakan SPJ Manual</label>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
@@ -339,6 +355,15 @@ $(document).ready(function() {
             $('#manual_manual_container_update').hide();
             $('#unit_tujuan_manual_manual').attr('required', false);
         }
+        if (<?= $header[0]->is_spj_manual; ?> == 1) {
+            $('#select2_spj_manual_update').hide();
+            $('#manual_no_spj_manual_update').show();
+            $('#no_spj_manual_manual').attr('required', true);
+        } else {
+            $('#select2_spj_manual_update').show();
+            $('#manual_no_spj_manual_update').hide();
+            $('#no_spj_manual_manual').attr('required', false);
+        }
     }
 });
 
@@ -355,5 +380,21 @@ function getVendorManual(loc) {
             $('#vendor_manual').val(data);
         }
     });
+}
+
+function setSPJManualManual(isManual) {
+    if (isManual.checked) {
+        $('#select2_spj_manual').hide();
+        $('#select2_spj_manual_update').hide();
+        $('#manual_no_spj_manual').show();
+        $('#manual_no_spj_manual_update').show();
+        $('#no_spj_manual_manual').attr('required', true);
+    } else {
+        $('#select2_spj_manual').show();
+        $('#select2_spj_manual_update').show();
+        $('#manual_no_spj_manual').hide();
+        $('#manual_no_spj_manual_update').hide();
+        $('#no_spj_manual_manual').attr('required', false);
+    }
 }
 </script>

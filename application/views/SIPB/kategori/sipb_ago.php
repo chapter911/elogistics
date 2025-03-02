@@ -144,19 +144,35 @@
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <select name="no_spj"
-                id="<?= isset($header) ? "no_spj_ago_update" : "no_spj_ago"; ?>"
-                class="select2" data-placeholder="NO SPJ" onchange="getVendorAgo(this)">
-                <option value="">- PILIH -</option>
-                <?php foreach ($kr as $d) { ?>
-                <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
-                        if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
-                            echo "selected";
-                        }
-                    } ?>>
-                    <?= html_escape(strtoupper($d->no_kr)); ?></option>
-                <?php } ?>
-            </select>
+            <div <?= isset($header) ? "id='select2_spj_ago_update'" : "id='select2_spj_ago'"?>>
+                <select name="no_spj"
+                    id="<?= isset($header) ? "no_spj_ago_update" : "no_spj_ago"; ?>"
+                    class="select2" data-placeholder="NO SPJ" onchange="getVendorAgo(this)">
+                    <option value="">- PILIH -</option>
+                    <?php foreach ($kr as $d) { ?>
+                    <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
+                            if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
+                                echo "selected";
+                            }
+                        } ?>>
+                        <?= html_escape(strtoupper($d->no_kr)); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div <?= isset($header) ? "id='manual_no_spj_ago_update'" : "id='manual_no_spj_ago'"?>
+                style="display: none;">
+                <input type="text" name="no_spj_manual" id="no_spj_ago_manual"
+                    class="form-control form-control-solid mb-3 mb-lg-0" placeholder="No SPJ Manual"
+                    <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "value='" . $header[0]->no_spj  . "'" : "" ?> />
+            </div>
+            <div class="row mt-2">
+                <div>
+                    <input type="checkbox" name="is_spj_manual" id="manual_spj_ago" class="form-check-input"
+                        <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "checked" : "" ?>
+                        onchange="setSPJAgoManual(this)" />
+                    <label class="required fw-semibold fs-6 mb-2">Gunakan SPJ Manual</label>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mb-4">
@@ -334,6 +350,15 @@ $(document).ready(function() {
     $('#no_spj_ago_update').select2({
         dropdownParent: $('#createApp2')
     });
+    if (<?= $header[0]->is_spj_manual; ?> == 1) {
+        $('#select2_spj_ago_update').hide();
+        $('#manual_no_spj_ago_update').show();
+        $('#no_spj_ago_manual').attr('required', true);
+    } else {
+        $('#select2_spj_ago_update').show();
+        $('#manual_no_spj_ago_update').hide();
+        $('#no_spj_ago_manual').attr('required', false);
+    }
 });
 <?php } ?>
 
@@ -350,5 +375,21 @@ function getVendorAgo(loc) {
             $('#vendor_ago').val(data);
         }
     });
+}
+
+function setSPJAgoManual(isManual) {
+    if (isManual.checked) {
+        $('#select2_spj_ago').hide();
+        $('#select2_spj_ago_update').hide();
+        $('#manual_no_spj_ago').show();
+        $('#manual_no_spj_ago_update').show();
+        $('#no_spj_ago_manual').attr('required', true);
+    } else {
+        $('#select2_spj_ago').show();
+        $('#select2_spj_ago_update').show();
+        $('#manual_no_spj_ago').hide();
+        $('#manual_no_spj_ago_update').hide();
+        $('#no_spj_ago_manual').attr('required', false);
+    }
 }
 </script>
