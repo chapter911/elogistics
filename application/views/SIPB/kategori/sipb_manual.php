@@ -204,7 +204,7 @@
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_manual" class="form-control mb-3 mb-lg-0"
-                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required readonly/>
+                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required/>
         </div>
     </div>
     <div class="row mb-4">
@@ -355,7 +355,7 @@ $(document).ready(function() {
             $('#manual_manual_container_update').hide();
             $('#unit_tujuan_manual_manual').attr('required', false);
         }
-        if (<?= $header[0]->is_spj_manual; ?> == 1) {
+        if (<?= isset($header) && ($header[0]->is_spj_manual == 1 ? 1 : 0) ?> == 1) {
             $('#select2_spj_manual_update').hide();
             $('#manual_no_spj_manual_update').show();
             $('#no_spj_manual_manual').attr('required', true);

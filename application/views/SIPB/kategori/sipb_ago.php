@@ -192,7 +192,7 @@
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_ago"
                 <?= isset($header) ? "value='" . $header[0]->vendor . "'" : ""?>
-                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Vendor" required readonly/>
+                class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Vendor" required/>
         </div>
     </div>
     <div class="row mb-4">
