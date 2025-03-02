@@ -190,13 +190,13 @@
             <input type="text" name="lokasi" id="lokasi_reservasi" class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? strtoupper($header[0]->lokasi) : ""; ?>" placeholder="Lokasi" required />
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Nama Pelaksana</label>
             <input type="text" name="nama_pelaksana" id="nama_pelaksana_reservasi"
                 class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? strtoupper($header[0]->nama_pelaksana) : ""; ?>"
                 placeholder="Nama Pelaksana" required />
-        </div>
+        </div> -->
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_reservasi" class="form-control mb-3 mb-lg-0"
