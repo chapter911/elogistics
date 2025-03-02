@@ -581,7 +581,7 @@ function detail(no_sipb, form_name, is_selesai){
             $('#detail_container').html(response);
             $('#downloadSIPB').attr('href', '<?= base_url() ?>C_SIPB/downloadSIPB/' + no_sipb);
             $('input[name="no_sipb_update"]').val(no_sipb);
-            $('#label_sipb').html("Edit SIPB / " + form_name);
+            $('#label_sipb').html("Edit SIPB / " + form_name.replace(/_/g, ' '));
             if(is_selesai == false){
                 if(form_name == "ago"){
                     $('#btn_simpan_tug_9').show();
