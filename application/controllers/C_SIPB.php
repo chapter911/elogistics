@@ -369,4 +369,72 @@ class C_SIPB extends CI_Controller
         $data['detail'] = $this->M_AllFunction->Where('vw_sipb_dtl', "no_sipb = '" . $no_sipb . "'");
         $this->load->view('SIPB/sipb_pdf', $data);
     }
+
+    function export(){
+        $data = $this->M_SIPB->exportData();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $spreadsheet->getDefaultStyle()->getFont()->setName('Arial');
+        $spreadsheet->getDefaultStyle()->getFont()->setSize(10);
+
+        $styleHeading = [
+            'font' => [
+                'bold' => true,
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'rgb' => 'CCCCCC',
+                ],
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['rgb' => '000000'],
+                ],
+            ],
+        ];
+
+        $sheet->getStyle('A1:J1')->applyFromArray($styleHeading);
+
+        foreach(range('A', 'J') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+
+        $sheet->setCellValue('A1', 'NO')
+            ->setCellValue('B1', 'NO SIPB')
+            ->setCellValue('C1', 'KATEGORI')
+            ->setCellValue('D1', 'NO SPJ')
+            ->setCellValue('E1', 'TANGGAL SIPB')
+            ->setCellValue('F1', 'UNIT')
+            ->setCellValue('G1', 'TUJUAN')
+            ->setCellValue('H1', 'BIDANG TUJUAN')
+            ->setCellValue('I1', 'VENDOR')
+            ->setCellValue('J1', 'STATUS');
+
+        $i = 1;
+        $row = 2;
+        foreach ($data as $d) {
+            $sheet->setCellValue('A'.$row, $i++)
+                ->setCellValue('B'.$row, html_escape($d->no_sipb))
+                ->setCellValue('C'.$row, strtoupper(str_replace("_", " ", html_escape($d->form_name))))
+                ->setCellValue('D'.$row, html_escape(strtoupper($d->no_spj)))
+                ->setCellValue('E'.$row, html_escape($d->tanggal))
+                ->setCellValue('F'.$row, html_escape($d->unit_asal_name))
+                ->setCellValue('G'.$row, html_escape($d->unit_tujuan_name))
+                ->setCellValue('H'.$row, html_escape(strtoupper($d->bidang_tujuan)))
+                ->setCellValue('I'.$row, html_escape($d->vendor))
+                ->setCellValue('J'.$row, html_escape($d->is_selesai) == 0 ? "Belum Selesai" : "Selesai");
+            $row++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.ms-excel');
+        $date = date('d-m-Y_H-i-s');
+        header('Content-Disposition: attachment;filename="SIPB'.$date.'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $writer->save('php://output');
+    }
 }
