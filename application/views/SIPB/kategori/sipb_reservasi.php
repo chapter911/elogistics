@@ -376,7 +376,7 @@ $(document).ready(function() {
     $('#no_spj_reservasi_update').select2({
         dropdownParent: $('#createApp2')
     });
-    if (<?= isset($header) && ($header[0]->is_spj_manual == 1) ? 1 : 0; ?> == 1) {
+    if (<?= $header[0]->is_spj_manual; ?> == 1) {
         $('#select2_spj_reservasi_update').hide();
         $('#manual_no_spj_reservasi_update').show();
         $('#no_spj_reservasi_manual').attr('required', true);
