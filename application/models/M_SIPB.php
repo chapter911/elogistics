@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_Attb extends CI_Model {
+class M_SIPB extends CI_Model {
 
 	function __construct(){
 		parent::__construct();
