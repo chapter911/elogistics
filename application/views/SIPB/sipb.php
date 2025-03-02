@@ -294,7 +294,7 @@ $(document).ready(function() {
         "ajax": {
             "url": "<?= base_url() ?>C_SIPB/ajaxSIPB",
             "type": "post",
-            "data": function(data) {
+            "data": {
                 data.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>",
                 data.unit_asal = $('#unit_asal').val(),
                 data.unit_tujuan = $('#unit_tujuan').val(),
