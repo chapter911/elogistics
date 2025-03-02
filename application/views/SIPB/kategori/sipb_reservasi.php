@@ -1,10 +1,10 @@
 <style>
-    .not-active {
-        color: #acaab1;
-        background-color: #f3f2f3;
-        border-color: #cdccd0;
-        opacity: 1;
-    }
+.not-active {
+    color: #acaab1;
+    background-color: #f3f2f3;
+    border-color: #cdccd0;
+    opacity: 1;
+}
 </style>
 
 <h3>
@@ -25,8 +25,7 @@
             <input type="date" name="tanggal" id="tanggal_reservasi"
                 class="form-control mb-3 mb-lg-0 <?= isset($header) ? "not-active" : "" ?>" placeholder="Tanggal"
                 <?= isset($header) ? "value='" . $header[0]->tanggal . "'" : "value='" . date('Y-m-d') . "'" ?>
-                <?= isset($header) ? "readonly" : "";?> required
-            />
+                <?= isset($header) ? "readonly" : "";?> required />
         </div>
     </div>
     <div class="row mb-4">
@@ -34,8 +33,7 @@
             <label class="required fw-semibold fs-6 mb-2">NO SIPB</label>
             <input type="text" name="no_sipb" id="no_sipb_reservasi"
                 class="form-control mb-3 mb-lg-0 <?= isset($header) ? "not-active" : "" ?>" placeholder="No SIPB"
-                <?= isset($header) ? "value='" . $header[0]->no_sipb . "'" : "value='$sipb'" ?>
-                readonly required/>
+                <?= isset($header) ? "value='" . $header[0]->no_sipb . "'" : "value='$sipb'" ?> readonly required />
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Kode Gudang</label>
@@ -52,16 +50,14 @@
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Nomor Kendaraan</label>
-            <input type="text" name="plat_no" id="plat_no_reservasi"
-                class="form-control mb-3 mb-lg-0" placeholder="Plat Nomor"
-                <?= isset($header) ? "value='" . $header[0]->plat_no . "'" : "" ?> required />
+            <input type="text" name="plat_no" id="plat_no_reservasi" class="form-control mb-3 mb-lg-0"
+                placeholder="Plat Nomor" <?= isset($header) ? "value='" . $header[0]->plat_no . "'" : "" ?> required />
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Unit Asal</label>
-            <input type="hidden" name="unit_asal" id="unit_asal_reservasi"
-                class="form-control mb-3 mb-lg-0"
+            <input type="hidden" name="unit_asal" id="unit_asal_reservasi" class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? $header[0]->unit_asal : $this->session->userdata('unit_id'); ?>" required />
             <select name="unit_name" id="<?= isset($header) ? "unit_name_reservasi_update" : "unit_name_reservasi"; ?>"
                 class="select2" data-placeholder="Pilih Unit Asal" disabled>
@@ -81,8 +77,8 @@
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Unit Tujuan</label>
             <select name="unit_tujuan"
-                id="<?= isset($header) ? "unit_tujuan_reservasi_update" : "unit_tujuan_reservasi"; ?>"
-                class="select2" data-placeholder="Pilih Unit Tujuan">
+                id="<?= isset($header) ? "unit_tujuan_reservasi_update" : "unit_tujuan_reservasi"; ?>" class="select2"
+                data-placeholder="Pilih Unit Tujuan">
                 <option value="">- PILIH -</option>
                 <?php foreach ($unit as $d) { ?>
                 <option value="<?= html_escape($d->id); ?>" <?php if(isset($header)){
@@ -132,8 +128,7 @@
         </div>
         <div class="col-md-4">
             <label class="required fw-semibold fs-6 mb-2">Pembawa Barang</label>
-            <input type="text" name="ttd_pembawa_barang" id="pembawa_barang_reservasi"
-                class="form-control mb-3 mb-lg-0"
+            <input type="text" name="ttd_pembawa_barang" id="pembawa_barang_reservasi" class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? strtoupper($header[0]->ttd_pembawa_barang) : ""; ?>"
                 placeholder="Pembawa Barang" required />
         </div>
@@ -143,8 +138,7 @@
         <h6>3. Data Material</h6>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Reservasi</label>
-            <input type="text" name="reservasi" id="reservasi_reservasi"
-                class="form-control mb-3 mb-lg-0"
+            <input type="text" name="reservasi" id="reservasi_reservasi" class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? strtoupper($header[0]->reservasi) : ""; ?>" placeholder="Reservasi"
                 required />
         </div>
@@ -155,22 +149,20 @@
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
-            <div
-                    <?= isset($header) ? "id='select2_spj_reservasi_update'" : "id='select2_spj_reservasi'"?>>
-            <select name="no_spj"
-                id="<?= isset($header) ? "no_spj_reservasi_update" : "no_spj_reservasi"; ?>"
-                class="select2" data-placeholder="NO SPJ" onchange="getVendorReservasi(this)">
-                <option value="">- PILIH -</option>
-                <?php foreach ($kr as $d) { ?>
-                <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
+            <div <?= isset($header) ? "id='select2_spj_reservasi_update'" : "id='select2_spj_reservasi'"?>>
+                <select name="no_spj" id="<?= isset($header) ? "no_spj_reservasi_update" : "no_spj_reservasi"; ?>"
+                    class="select2" data-placeholder="NO SPJ" onchange="getVendorReservasi(this)">
+                    <option value="">- PILIH -</option>
+                    <?php foreach ($kr as $d) { ?>
+                    <option value="<?= html_escape(strtolower($d->no_kr)); ?>" <?php if(isset($header)){
                         if(strtolower($header[0]->no_spj) == strtolower($d->no_kr)){
                             echo "selected";
                         }
                     } ?>>
-                    <?= html_escape(strtoupper($d->no_kr)); ?></option>
-                <?php } ?>
-            </select>
-        </div>
+                        <?= html_escape(strtoupper($d->no_kr)); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
             <div <?= isset($header) ? "id='manual_no_spj_reservasi_update'" : "id='manual_no_spj_reservasi'"?>
                 style="display: none;">
                 <input type="text" name="no_spj_manual" id="no_spj_reservasi_manual"
@@ -179,8 +171,7 @@
             </div>
             <div class="row mt-2">
                 <div>
-                    <input type="checkbox" name="is_spj_manual" id="manual_spj_reservasi"
-                        class="form-check-input"
+                    <input type="checkbox" name="is_spj_manual" id="manual_spj_reservasi" class="form-check-input"
                         <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "checked" : "" ?>
                         onchange="setSPJReservasiManual(this)" />
                     <label class="required fw-semibold fs-6 mb-2">Gunakan SPJ Manual</label>
@@ -189,8 +180,7 @@
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO WBS / ORDER</label>
-            <input type="text" name="no_wbs_order" id="no_wbs_order_reservasi"
-                class="form-control mb-3 mb-lg-0"
+            <input type="text" name="no_wbs_order" id="no_wbs_order_reservasi" class="form-control mb-3 mb-lg-0"
                 value="<?= isset($header) ? strtoupper($header[0]->no_wbs_order) : ""; ?>" placeholder="NO WBS"
                 required />
         </div>
@@ -198,10 +188,9 @@
     <div class="row mb-4">
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Jenis Pekerjaan</label>
-            <input type="text" name="pekerjaan" id="pekerjaan_reservasi"
-                class="form-control mb-3 mb-lg-0"
-                value="<?= isset($header) ? strtoupper($header[0]->pekerjaan) : ""; ?>"
-                placeholder="Pekerjaan" required />
+            <input type="text" name="pekerjaan" id="pekerjaan_reservasi" class="form-control mb-3 mb-lg-0"
+                value="<?= isset($header) ? strtoupper($header[0]->pekerjaan) : ""; ?>" placeholder="Pekerjaan"
+                required />
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Lokasi</label>
@@ -218,7 +207,7 @@
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">Vendor</label>
             <input type="text" name="vendor" id="vendor_reservasi" class="form-control mb-3 mb-lg-0"
-                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required/>
+                value="<?= isset($header) ? strtoupper($header[0]->vendor) : ""; ?>" placeholder="Vendor" required />
         </div>
     </div>
     <div class="row mb-4">
@@ -309,11 +298,11 @@
     </div>
     <?php } ?>
     <?php if(!isset($header) || $header[0]->is_selesai == 0) { ?>
-        <div class="row mb-4">
-            <div class="col-md-12 text-end">
-                <button type="submit" class="btn btn-primary"><?= !isset($header) ? "Simpan" : "Update";?></button>
-            </div>
+    <div class="row mb-4">
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-primary"><?= !isset($header) ? "Simpan" : "Update";?></button>
         </div>
+    </div>
     <?php } ?>
 </form>
 
