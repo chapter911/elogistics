@@ -197,6 +197,50 @@
                                 </span>
                             </button>
                         </div>
+                        <div id="visible_tug_3">
+                            <div class="line"></div>
+                            <div class="step" data-target="#detail_tug_3">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title text-uppercase">TUG 3</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="visible_tug_5">
+                            <div class="line"></div>
+                            <div class="step" data-target="#detail_tug_5">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title text-uppercase">TUG 5</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="visible_tug_7">
+                            <div class="line"></div>
+                            <div class="step" data-target="#detail_tug_7">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title text-uppercase">TUG 7</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="visible_tug_8">
+                            <div class="line"></div>
+                            <div class="step" data-target="#detail_tug_8">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title text-uppercase">TUG 8</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
                         <div id="visible_tug_9">
                             <div class="line"></div>
                             <div class="step" data-target="#detail_tug_9">
@@ -204,6 +248,17 @@
                                     <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
                                     <span class="bs-stepper-label">
                                         <span class="bs-stepper-title text-uppercase">TUG 9</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="visible_tug_16">
+                            <div class="line"></div>
+                            <div class="step" data-target="#detail_tug_16">
+                                <button type="button" class="step-trigger">
+                                    <span class="bs-stepper-circle"><i class="ti ti-file-text"></i></span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title text-uppercase">TUG 16</span>
                                     </span>
                                 </button>
                             </div>
