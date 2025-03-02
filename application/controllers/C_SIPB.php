@@ -111,6 +111,7 @@ class C_SIPB extends CI_Controller
     }
 
     function Save(){
+        $is_spj_manual = array_key_exists("is_spj_manual", $this->input->post()) ? true : false;
         $data = array(
             "tanggal"                  => $this->input->post('tanggal', true),
             "no_sipb"                  => $this->input->post('no_sipb', true),
@@ -126,7 +127,8 @@ class C_SIPB extends CI_Controller
             "ttd_pengawas_pekerjaan"   => $this->input->post('ttd_pengawas_pekerjaan', true) ?? null,
             "ttd_pembawa_barang"       => $this->input->post('ttd_pembawa_barang', true) ?? null,
             "slip"                     => $this->input->post('slip', true) ?? null,
-            "no_spj"                   => $this->input->post('no_spj', true) ?? null,
+            "no_spj"                   => $is_spj_manual ? $this->input->post('no_spj_manual', true) : $this->input->post('no_spj', true),
+            "is_spj_manual"            => $is_spj_manual,
             "no_wbs_order"             => $this->input->post('no_wbs_order', true) ?? null,
             "pekerjaan"                => $this->input->post('pekerjaan', true) ?? null,
             "lokasi"                   => $this->input->post('lokasi', true) ?? null,

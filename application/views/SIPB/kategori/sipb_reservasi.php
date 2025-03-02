@@ -155,6 +155,8 @@
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO SPJ</label>
+            <div
+                    <?= isset($header) ? "id='select2_spj_reservasi_update'" : "id='select2_spj_reservasi'"?>>
             <select name="no_spj"
                 id="<?= isset($header) ? "no_spj_reservasi_update" : "no_spj_reservasi"; ?>"
                 class="select2" data-placeholder="NO SPJ" onchange="getVendorReservasi(this)">
@@ -168,6 +170,22 @@
                     <?= html_escape(strtoupper($d->no_kr)); ?></option>
                 <?php } ?>
             </select>
+        </div>
+            <div <?= isset($header) ? "id='manual_no_spj_reservasi_update'" : "id='manual_no_spj_reservasi'"?>
+                style="display: none;">
+                <input type="text" name="no_spj_manual" id="no_spj_reservasi_manual"
+                    class="form-control form-control-solid mb-3 mb-lg-0" placeholder="No SPJ Manual"
+                    <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "value='" . $header[0]->no_spj  . "'" : "" ?> />
+            </div>
+            <div class="row mt-2">
+                <div>
+                    <input type="checkbox" name="is_spj_manual" id="manual_spj_reservasi"
+                        class="form-check-input"
+                        <?= isset($header) && ($header[0]->is_spj_manual == 1) ? "checked" : "" ?>
+                        onchange="setSPJReservasiManual(this)" />
+                    <label class="required fw-semibold fs-6 mb-2">Gunakan SPJ Manual</label>
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             <label class="required fw-semibold fs-6 mb-2">NO WBS / ORDER</label>
@@ -358,6 +376,15 @@ $(document).ready(function() {
     $('#no_spj_reservasi_update').select2({
         dropdownParent: $('#createApp2')
     });
+    if (<?= isset($header) && ($header[0]->is_spj_manual == 1) ? 1 : 0; ?> == 1) {
+        $('#select2_spj_reservasi_update').hide();
+        $('#manual_no_spj_reservasi_update').show();
+        $('#no_spj_reservasi_manual').attr('required', true);
+    } else {
+        $('#select2_spj_reservasi_update').show();
+        $('#manual_no_spj_reservasi_update').hide();
+        $('#no_spj_reservasi_manual').attr('required', false);
+    }
 });
 <?php } ?>
 
@@ -374,5 +401,21 @@ function getVendorReservasi(loc) {
             $('#vendor_reservasi').val(data);
         }
     });
+}
+
+function setSPJReservasiManual(isManual) {
+    if (isManual.checked) {
+        $('#select2_spj_reservasi').hide();
+        $('#select2_spj_reservasi_update').hide();
+        $('#manual_no_spj_reservasi').show();
+        $('#manual_no_spj_reservasi_update').show();
+        $('#no_spj_reservasi_manual').attr('required', true);
+    } else {
+        $('#select2_spj_reservasi').show();
+        $('#select2_spj_reservasi_update').show();
+        $('#manual_no_spj_reservasi').hide();
+        $('#manual_no_spj_reservasi_update').hide();
+        $('#no_spj_reservasi_manual').attr('required', false);
+    }
 }
 </script>
