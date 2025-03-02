@@ -355,7 +355,7 @@ $(document).ready(function() {
             $('#manual_manual_container_update').hide();
             $('#unit_tujuan_manual_manual').attr('required', false);
         }
-        if (<?= isset($header) && ($header[0]->is_spj_manual == 1 ? 1 : 0) ?> == 1) {
+        if(<?= (isset($header) && $header[0]->is_spj_manual) == 1 ? 1 : 0 ?> == 1){
             $('#select2_spj_manual_update').hide();
             $('#manual_no_spj_manual_update').show();
             $('#no_spj_manual_manual').attr('required', true);
