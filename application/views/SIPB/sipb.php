@@ -9,10 +9,10 @@
         <form class="form" action="<?= base_url(); ?>C_Analisis/exportDataPemakaian" method="POST">
             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     <div class="fv-row mb-7">
-                        <label class="fw-semibold fs-6 mb-2">Unit Tujuan</label>
-                        <select name="unit" id="unit" class="form-select select2" data-placeholder="Pilih Unit"
+                        <label class="fw-semibold fs-6 mb-2">Unit Asal</label>
+                        <select name="unit_asal" id="unit_asal" class="form-select select2" data-placeholder="Pilih Unit"
                             onchange="filterData()">
                             <option value="*">ALL</option>
                             <?php foreach ($unit as $u) { ?>
@@ -21,7 +21,19 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-5"></div>
+                <div class="col-2">
+                    <div class="fv-row mb-7">
+                        <label class="fw-semibold fs-6 mb-2">Unit Tujuan</label>
+                        <select name="unit_tujuan" id="unit_tujuan" class="form-select select2" data-placeholder="Pilih Unit"
+                            onchange="filterData()">
+                            <option value="*">ALL</option>
+                            <?php foreach ($unit as $u) { ?>
+                            <option value="<?= html_escape($u->id); ?>"><?= html_escape($u->name); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4"></div>
                 <div class="col-2">
                     <div class="fv-row mb-7">
                         <label class="fw-semibold fs-6 mb-2">&nbsp;</label>
@@ -282,6 +294,11 @@ $(document).ready(function() {
         "ajax": {
             "url": "<?= base_url() ?>C_SIPB/ajaxSIPB",
             "type": "post",
+            "data": function(data) {
+                data.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>",
+                data.unit_asal = $('#unit_asal').val(),
+                data.unit_tujuan = $('#unit_tujuan').val(),
+            },
             "beforeSend": function() {
                 Swal.fire({
                     title: 'Mohon Tunggu',
@@ -291,9 +308,6 @@ $(document).ready(function() {
                     showConfirmButton: false,
                 });
                 Swal.showLoading();
-            },
-            "data": function(data) {
-                data.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>"
             },
             "complete": function(response) {
                 Swal.close();

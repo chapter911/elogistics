@@ -276,7 +276,7 @@ class C_SIPB extends CI_Controller
     }
 
     function ajaxSIPB(){
-        $hasil = $this->M_AllFunction->Get('vw_sipb_hdr');
+        $hasil = $this->M_SIPB->getData();
 
         $data['data'] = array();
 
