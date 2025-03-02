@@ -204,7 +204,7 @@ $html = '
         <td></td>
     </tr>
     <tr>
-        <td>' . $header[0]->unit_tujuan_long_name . '</td>
+        <td>' . $header[0]->unit_asal_long_name . '</td>
         <td>Kepada Yth,</td>
     </tr>
     <tr>
