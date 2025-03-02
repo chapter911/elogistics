@@ -294,11 +294,6 @@ $(document).ready(function() {
         "ajax": {
             "url": "<?= base_url() ?>C_SIPB/ajaxSIPB",
             "type": "post",
-            "data": {
-                <?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>",
-                unit_asal = $('#unit_asal').val(),
-                unit_tujuan = $('#unit_tujuan').val(),
-            },
             "beforeSend": function() {
                 Swal.fire({
                     title: 'Mohon Tunggu',
@@ -308,6 +303,11 @@ $(document).ready(function() {
                     showConfirmButton: false,
                 });
                 Swal.showLoading();
+            },
+            "data": function(data) {
+                data.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>",
+                data.unit_asal = $('#unit_asal').val(),
+                data.unit_tujuan = $('#unit_tujuan').val()
             },
             "complete": function(response) {
                 Swal.close();
