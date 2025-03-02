@@ -408,7 +408,7 @@ class C_SIPB extends CI_Controller
             } else {
                 $row[] = "<span class='badge badge-primary btn-primary'>Selesai</span>";
             }
-            $row[] = "<button class=\"btn btn-outline-secondary btn-sm waves-effect waves-light\" onclick=\"detail('" . html_escape($h->no_sipb) .  "','" . str_replace("_", " ", html_escape($h->form_name)) . "','" . str_replace("_", " ", html_escape($h->is_selesai)) . "')\"><i class=\"fa fa-pencil\"></i></button>";
+            $row[] = "<button class=\"btn btn-outline-secondary btn-sm waves-effect waves-light\" onclick=\"detail('" . html_escape($h->no_sipb) .  "','" . html_escape($h->form_name) . "','" . str_replace("_", " ", html_escape($h->is_selesai)) . "')\"><i class=\"fa fa-pencil\"></i></button>";
             $data['data'][] = $row;
         }
 

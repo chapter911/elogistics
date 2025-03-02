@@ -586,7 +586,7 @@ function detail(no_sipb, form_name, is_selesai){
                 if(form_name == "ago"){
                     $('#btn_simpan_tug_9').show();
                     $('#visible_tug_9').show();
-                }else if(form_name == "antar unit"){
+                }else if(form_name == "antar_unit"){
                     $('#btn_simpan_tug_5').show();
                     $('#visible_tug_5').show();
                     $('#btn_simpan_tug_7').show();
@@ -598,7 +598,7 @@ function detail(no_sipb, form_name, is_selesai){
                     $('#visible_tug_3').show();
                     $('#btn_simpan_tug_8').show();
                     $('#visible_tug_8').show();
-                } else if(form_name == "klaim garansi retrofit"){
+                } else if(form_name == "klaim_garansi_retrofit"){
                     $('#btn_simpan_tug_16').show();
                     $('#visible_tug_16').show();
                 } else if(form_name == "limbah"){
