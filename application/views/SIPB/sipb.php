@@ -612,7 +612,7 @@ function detail(no_sipb, form_name, is_selesai){
                 $('#btn_simpan_tug_9').show();
                 $('#visible_tug_9').show();
             }
-            if(is_selesai == false){
+            if(is_selesai != false){
                 $('#file_dokumen').show();
                 $('#btn_simpan').show();
                 $('#visible_sipb').show();
