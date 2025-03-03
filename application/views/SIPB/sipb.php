@@ -582,37 +582,37 @@ function detail(no_sipb, form_name, is_selesai){
             $('#downloadSIPB').attr('href', '<?= base_url() ?>C_SIPB/downloadSIPB/' + no_sipb);
             $('input[name="no_sipb_update"]').val(no_sipb);
             $('#label_sipb').html("Edit SIPB / " + form_name.replace(/_/g, ' '));
+            if(form_name == "ago"){
+                $('#btn_simpan_tug_9').show();
+                $('#visible_tug_9').show();
+            }else if(form_name == "antar_unit"){
+                $('#btn_simpan_tug_5').show();
+                $('#visible_tug_5').show();
+                $('#btn_simpan_tug_7').show();
+                $('#visible_tug_7').show();
+                $('#btn_simpan_tug_8').show();
+                $('#visible_tug_8').show();
+            } else if(form_name == "attb"){
+                $('#btn_simpan_tug_3').show();
+                $('#visible_tug_3').show();
+                $('#btn_simpan_tug_8').show();
+                $('#visible_tug_8').show();
+            } else if(form_name == "klaim_garansi_retrofit"){
+                $('#btn_simpan_tug_16').show();
+                $('#visible_tug_16').show();
+            } else if(form_name == "limbah"){
+                $('#btn_simpan_tug_3').show();
+                $('#visible_tug_3').show();
+                $('#btn_simpan_tug_8').show();
+                $('#visible_tug_8').show();
+            } else if(form_name == "manual"){
+                $('#btn_simpan_tug_9').show();
+                $('#visible_tug_9').show();
+            } else if(form_name == "reservasi"){
+                $('#btn_simpan_tug_9').show();
+                $('#visible_tug_9').show();
+            }
             if(is_selesai == false){
-                if(form_name == "ago"){
-                    $('#btn_simpan_tug_9').show();
-                    $('#visible_tug_9').show();
-                }else if(form_name == "antar_unit"){
-                    $('#btn_simpan_tug_5').show();
-                    $('#visible_tug_5').show();
-                    $('#btn_simpan_tug_7').show();
-                    $('#visible_tug_7').show();
-                    $('#btn_simpan_tug_8').show();
-                    $('#visible_tug_8').show();
-                } else if(form_name == "attb"){
-                    $('#btn_simpan_tug_3').show();
-                    $('#visible_tug_3').show();
-                    $('#btn_simpan_tug_8').show();
-                    $('#visible_tug_8').show();
-                } else if(form_name == "klaim_garansi_retrofit"){
-                    $('#btn_simpan_tug_16').show();
-                    $('#visible_tug_16').show();
-                } else if(form_name == "limbah"){
-                    $('#btn_simpan_tug_3').show();
-                    $('#visible_tug_3').show();
-                    $('#btn_simpan_tug_8').show();
-                    $('#visible_tug_8').show();
-                } else if(form_name == "manual"){
-                    $('#btn_simpan_tug_9').show();
-                    $('#visible_tug_9').show();
-                } else if(form_name == "reservasi"){
-                    $('#btn_simpan_tug_9').show();
-                    $('#visible_tug_9').show();
-                }
                 $('#file_dokumen').show();
                 $('#btn_simpan').show();
                 $('#visible_sipb').show();
