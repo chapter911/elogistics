@@ -45,7 +45,7 @@
                 <div class="col-2">
                     <div class="fv-row mb-7">
                         <label class="fw-semibold fs-6 mb-2">&nbsp;</label>
-                        <button type="submit" class="btn btn-primary btn-block form-control">
+                        <button type="submit" onclick="showLoading()" class="btn btn-primary btn-block form-control">
                             <i class="fa-solid fa-file-excel"></i> &nbsp; Export
                         </button>
                     </div>
@@ -296,7 +296,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_3" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -318,7 +318,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_5" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -340,7 +340,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_7" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -362,7 +362,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_8" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -384,7 +384,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_9" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -406,7 +406,7 @@
                                     <br/>
                                     <div id="btn_simpan_tug_16" class="text-end">
                                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
@@ -431,7 +431,7 @@
                                         </a>
                                         <div id="btn_simpan" class="text-end">
                                             <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Tutup</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                            <button type="submit" onclick="showLoading()" class="btn btn-primary">Simpan</button>
                                         </div>
                                     </div>
                                 </form>
@@ -628,5 +628,16 @@ function detail(no_sipb, form_name, is_selesai){
             console.log(textStatus, errorThrown);
         }
     });
+}
+
+function showLoading(){
+    Swal.fire({
+        title: 'Mohon Tunggu',
+        html: 'Sedang memproses data',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+    });
+    Swal.showLoading();
 }
 </script>
