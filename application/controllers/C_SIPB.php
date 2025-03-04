@@ -395,13 +395,13 @@ class C_SIPB extends CI_Controller
                 if(html_escape($h->{$array_file[$i]}) == null){
                     $text .= "";
                 } else {
-                    $text .= "<a href=\"" . base_url() . html_escape($h->file_directory) . '/' . html_escape($h->{$array_file[$i]}) . "\" class=\"btn btn-text-danger btn-hover-light-danger btn-sm\" target=\"_blank\"> <i class=\"fa fa-file-pdf\"></i> " . str_replace("_", " ", str_replace("FILE", "", strtoupper($array_file[$i]))) . "</a>";
+                    $text .= "<a href=\"" . base_url() . html_escape($h->file_directory) . '/' . html_escape($h->{$array_file[$i]}) . "\" class=\"btn btn-text-primary btn-hover-light-primary btn-sm\" target=\"_blank\"> <i class=\"fa fa-file-pdf\"></i> " . str_replace("_", " ", str_replace("FILE", "", strtoupper($array_file[$i]))) . "</a>";
                 }
             }
             if(html_escape($h->is_selesai) == 0){
-                $text .= "<a href=\"#\" class=\"btn btn-text-secondary btn-hover-light-danger btn-sm\"> <i class=\"fa fa-file-pdf\"></i> SIPB</a>";
+                $text .= "<a href=\"#\" class=\"btn btn-text-danger btn-hover-light-danger btn-sm\"> <i class=\"fa fa-file-pdf\"></i> SIPB</a>";
             } else {
-                $text .= "<a href=\"" . base_url() . html_escape($h->file_directory) . '/' . html_escape($h->file_sipb) . "\" class=\"btn btn-text-danger btn-hover-light-danger btn-sm\" target=\"_blank\"> <i class=\"fa fa-file-pdf\"></i> SIPB</a>";
+                $text .= "<a href=\"" . base_url() . html_escape($h->file_directory) . '/' . html_escape($h->file_sipb) . "\" class=\"btn btn-text-primary btn-hover-light-primary btn-sm\" target=\"_blank\"> <i class=\"fa fa-file-pdf\"></i> SIPB</a>";
             }
             $row[] = $text;
 
