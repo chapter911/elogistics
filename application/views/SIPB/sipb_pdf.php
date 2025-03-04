@@ -10,7 +10,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, false, 'UTF-8'
 $pdf->SetPrintHeader(false);
 $pdf->SetPrintFooter(false);
 
-$pdf->SetAutoPageBreak(false, 0);
+$pdf->SetAutoPageBreak(true, 0);
 $pdf->SetFont('helvetica', '', 11);
 
 $pdf->AddPage('L');
