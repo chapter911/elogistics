@@ -57,7 +57,7 @@
                 <table id="table" class="table">
                     <thead>
                         <tr style="background-color: #008B8B">
-                            <th style="text-align: center; color: white">#</th>
+                            <th style="text-align: center; color: white">NO</th>
                             <th style="text-align: center; color: white">NO SIPB</th>
                             <th style="text-align: center; color: white">TANGGAL SIPB</th>
                             <th style="text-align: center; color: white">KATEGORI</th>

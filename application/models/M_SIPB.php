@@ -20,7 +20,7 @@ class M_SIPB extends CI_Model {
 
     function getData(){
         $this->execQuery();
-        $this->db->order_by("no_sipb", "asc");
+        $this->db->order_by("tanggal", "desc");
         return $this->db->get()->result();
     }
 
