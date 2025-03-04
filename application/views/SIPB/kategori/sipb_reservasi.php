@@ -265,7 +265,7 @@
                             <input type='text' name="merk[]" class='form-control' required />
                         </td>
                         <td style="text-align: center;">
-                            <input type='text' name="no_seri[]" class='form-control' required />
+                            <input type='text' name="no_seri[]" class='form-control' />
                         </td>
                         <td style="text-align: center;">
                             <input type='number' name="volume[]" class='form-control' required />
@@ -327,7 +327,7 @@ function insert_row_reservasi() {
                 <input type='text' name="merk[]" class='form-control' required/>
             </td>
             <td style="text-align: center;">
-                <input type='text' name="no_seri[]" class='form-control' required/>
+                <input type='text' name="no_seri[]" class='form-control'/>
             </td>
             <td style="text-align: center;">
                 <input type='number' name="volume[]" class='form-control' required/>
