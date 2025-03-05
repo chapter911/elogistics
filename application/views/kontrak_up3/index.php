@@ -580,8 +580,6 @@ var map;
 var loc_text;
 
 $(document).ready(function() {
-    <?php
-    if (check_connection('https://unpkg.com')) { ?>
     map = L.map('map').setView([-6.1804611, 106.8763308], 19);
 
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -590,7 +588,6 @@ $(document).ready(function() {
 
     L.Control.geocoder().addTo(map);
     $('.leaflet-container').css('cursor', 'default');
-    <?php } ?>
 
     table_kontrak = $("#table_kontrak").DataTable({
         "scrollX": true,
@@ -660,7 +657,7 @@ function onMapClick(e) {
     L.marker([e.latlng['lat'], e.latlng['lng']]).addTo(map).bindPopup("Click Ok untuk Set Lokasi.").openPopup();
     var loc = $(loc_text).closest('tr');
     $.get('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + e.latlng['lat'] + '&lon=' + e.latlng[
-            'lng'] + '',
+        'lng'] + '',
         function(data) {
             // console.log(data.display_name);
             $('#nama_lokasi').val(data.display_name);
