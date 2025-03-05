@@ -27,7 +27,7 @@
                             <th style="text-align: center; color: white;"> MATERIAL </th>
                             <th style="text-align: center; color: white;"> NO STO </th>
                             <th style="text-align: center; color: white;"> STATUS </th>
-                            <th style="text-align: center; color: white;"> FILE TUG </th>
+                            <th style="text-align: center; color: white;"> FILE </th>
                             <th style="text-align: center; color: white;"> LACAK </th>
                         </tr>
                     </thead>
