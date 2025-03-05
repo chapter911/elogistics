@@ -6,7 +6,8 @@
     </div>
     <div class="collapse p-5 show">
         <form class="form" action="<?= base_url(); ?>C_Pemasaran/exportIndex" method="POST">
-            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+            <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                value="<?=$this->security->get_csrf_hash();?>">
             <div class="row">
                 <div class="col-2">
                     <div class="fv-row mb-7">
@@ -55,11 +56,18 @@
                 <table id="table" class="table dt-fixedcolumns">
                     <thead>
                         <tr style="background-color: #008B8B">
-                            <th style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;"> NO </th>
-                            <th style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;"> UNIT </th>
-                            <th style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;"> PELANGGAN </th>
+                            <th
+                                style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;">
+                                NO </th>
+                            <th
+                                style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;">
+                                UNIT </th>
+                            <th
+                                style="text-align: center; vertical-align: middle; color: white; background-color: #008B8B;">
+                                PELANGGAN </th>
                             <th style="text-align: center; vertical-align: middle; color: white;"> LAYANAN </th>
-                            <th style="text-align: center; vertical-align: middle; color: white;"> JENIS PENGUKURAN </th>
+                            <th style="text-align: center; vertical-align: middle; color: white;"> JENIS PENGUKURAN
+                            </th>
                             <th style="text-align: center; vertical-align: middle; color: white;"> TEGANGAN </th>
                             <th style="text-align: center; vertical-align: middle; color: white;"> PEKERJAAN </th>
                             <th style="text-align: center; vertical-align: middle; color: white;"> TARIF </th>
@@ -92,7 +100,8 @@
             </div>
             <div class="modal-body scroll-y m-5">
                 <form action="<?= base_url() ?>C_Pemasaran/Save" method="POST" class="form">
-                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                        value="<?=$this->security->get_csrf_hash();?>">
                     <div class="row mb-5">
                         <div class="col-md-6">
                             <label class="required form-label">Nama Pelanggan</label>
@@ -159,7 +168,8 @@
                             <select class="form-control select2" name="daya_lama" id="daya_lama" required>
                                 <option></option>
                                 <?php foreach ($daya as $d) { ?>
-                                <option value="<?= html_escape($d->daya); ?>"><?= number_format(html_escape($d->daya), 0, ",", "."); ?></option>
+                                <option value="<?= html_escape($d->daya); ?>">
+                                    <?= number_format(html_escape($d->daya), 0, ",", "."); ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -168,7 +178,8 @@
                             <select class="form-control select2" name="daya" id="daya" required>
                                 <option></option>
                                 <?php foreach ($daya as $d) { ?>
-                                <option value="<?= html_escape($d->daya); ?>"><?= number_format(html_escape($d->daya), 0, ",", "."); ?></option>
+                                <option value="<?= html_escape($d->daya); ?>">
+                                    <?= number_format(html_escape($d->daya), 0, ",", "."); ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -176,8 +187,7 @@
                     <div class="row mb-5">
                         <div class="col-md-3">
                             <label class="required form-label">Tanggal Permohonan</label>
-                            <input type="date" name="tanggal_permohonan" id="tanggal_permohonan"
-                                class="form-control"
+                            <input type="date" name="tanggal_permohonan" id="tanggal_permohonan" class="form-control"
                                 placeholder="Tanggal Permohonan">
                         </div>
                         <div class="col-md-3">
@@ -191,11 +201,13 @@
                         </div>
                         <div class="col-md-3 visible_tanggal">
                             <label class="required form-label">Tanggal SIP</label>
-                            <input type="date" name="tanggal_sip" id="tanggal_sip" class="form-control" placeholder="Tanggal SIP">
+                            <input type="date" name="tanggal_sip" id="tanggal_sip" class="form-control"
+                                placeholder="Tanggal SIP">
                         </div>
                         <div class="col-md-3">
                             <label class="required form-label">Rencana Nyala</label>
-                            <input type="date" name="rencana_nyala" id="rencana_nyala" class="form-control" placeholder="Rencana Nyala" required>
+                            <input type="date" name="rencana_nyala" id="rencana_nyala" class="form-control"
+                                placeholder="Rencana Nyala" required>
                         </div>
                     </div>
                     <div class="row mb-5">
@@ -331,10 +343,13 @@
                     </div>
                     <div class="bs-stepper-content p-1">
                         <div id="material_form" class="content pt-4 pt-lg-0">
-                            <form class="form" action="<?= base_url(); ?>C_Pemasaran/update_approved_volume" method="POST">
-                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                            <form class="form" action="<?= base_url(); ?>C_Pemasaran/update_approved_volume"
+                                method="POST">
+                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                                    value="<?=$this->security->get_csrf_hash();?>">
                                 <div class="mb-6">
-                                    <input type="hidden" name="id_pemasaran" id="id_pemasaran" class="form-control mb-3 mb-lg-0" required/>
+                                    <input type="hidden" name="id_pemasaran" id="id_pemasaran"
+                                        class="form-control mb-3 mb-lg-0" required />
                                     <div class="table-responsive" id="update_material_pemasaran"></div>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between mt-6">
@@ -350,17 +365,20 @@
                         </div>
                         <div id="tanggal_sip_form" class="content pt-4 pt-lg-0">
                             <form class="form" action="<?= base_url(); ?>C_Pemasaran/updateTanggalSIP" method="POST">
-                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                                    value="<?=$this->security->get_csrf_hash();?>">
                                 <div class="col">
                                     <label class="required form-label">Tanggal SIP</label>
-                                    <input type="hidden" name="id_sip" id="id_sip" class="form-control mb-3 mb-lg-0" required/>
-                                    <input type="date" name="update_tanggal_sip" id="update_tanggal_sip" class="form-control mb-3 mb-lg-0" placeholder="Tanggal SIP" required />
+                                    <input type="hidden" name="id_sip" id="id_sip" class="form-control mb-3 mb-lg-0"
+                                        required />
+                                    <input type="date" name="update_tanggal_sip" id="update_tanggal_sip"
+                                        class="form-control mb-3 mb-lg-0" placeholder="Tanggal SIP" required />
                                 </div>
                                 <div class="col-12 d-flex justify-content-between mt-6">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
                                         <span class="align-middle d-sm-inline-block d-none">Reset</span>
                                     </button>
-                                    <button type="submit" class="btn btn-primary btn-next" id="btn_update_tanggal_sip">
+                                    <button type="submit" class="btn btn-primary btn-next" id="btn_update_tanggal_sip" style="display: none;">
                                         <i class="ti ti-device-floppy ti-xs"></i>
                                         <span class="align-middle d-sm-inline-block d-none me-sm-2">Simpan</span>
                                     </button>
@@ -369,16 +387,20 @@
                         </div>
                         <div id="status_form" class="content pt-4 pt-lg-0">
                             <form class="form" action="<?= base_url(); ?>C_Pemasaran/updateStatus" method="POST">
-                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                                    value="<?=$this->security->get_csrf_hash();?>">
                                 <div class="fv-row mb-7">
                                     <label class="required fw-semibold fs-6 mb-2">Status</label>
-                                    <input type="hidden" name="id_status" id="id_status" class="form-control mb-3 mb-lg-0" required/>
+                                    <input type="hidden" name="id_status" id="id_status"
+                                        class="form-control mb-3 mb-lg-0" required />
                                     <input type="text" class="form-control mb-3 mb-lg-0" value="SUDAH NYALA" readonly />
                                 </div>
                                 <div class="fv-row mb-7">
                                     <label class="required fw-semibold fs-6 mb-2">Tanggal Nyala</label>
-                                    <input type="date" name="update_tanggal_nyala" id="update_tanggal_nyala" class="form-control mb-3 mb-lg-0" placeholder="Tanggal Nyala" required />
-                                    <label class="fw-semibold fs-6 mb-2" style="color: red;">* Pastikan tanggal SIP di update terlebih dahulu</label>
+                                    <input type="date" name="update_tanggal_nyala" id="update_tanggal_nyala"
+                                        class="form-control mb-3 mb-lg-0" placeholder="Tanggal Nyala" required />
+                                    <label class="fw-semibold fs-6 mb-2" style="color: red;">* Pastikan tanggal SIP di
+                                        update terlebih dahulu</label>
                                 </div>
                                 <div class="col-12 d-flex justify-content-between mt-6">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
@@ -393,11 +415,14 @@
                         </div>
                         <div id="rencana_nyala_form" class="content pt-4 pt-lg-0">
                             <form class="form" action="<?= base_url(); ?>C_Pemasaran/updateRencanaNyala" method="POST">
-                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                                    value="<?=$this->security->get_csrf_hash();?>">
                                 <div class="fv-row mb-7">
                                     <label class="required fw-semibold fs-6 mb-2">Rencana Nyala</label>
-                                    <input type="hidden" name="id_rencana_nyala" id="id_rencana_nyala" class="form-control mb-3 mb-lg-0" required/>
-                                    <input type="date" class="form-control mb-3 mb-lg-0" name="update_rencana_nyala" id="update_rencana_nyala" required/>
+                                    <input type="hidden" name="id_rencana_nyala" id="id_rencana_nyala"
+                                        class="form-control mb-3 mb-lg-0" required />
+                                    <input type="date" class="form-control mb-3 mb-lg-0" name="update_rencana_nyala"
+                                        id="update_rencana_nyala" required />
                                 </div>
                                 <div class="col-12 d-flex justify-content-between mt-6">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
@@ -412,11 +437,13 @@
                         </div>
                         <div id="keterangan_form" class="content pt-4 pt-lg-0">
                             <form class="form" action="<?= base_url(); ?>C_Pemasaran/updateKeterangan" method="POST">
-                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
+                                    value="<?=$this->security->get_csrf_hash();?>">
                                 <div class="fv-row mb-7">
                                     <label class="required fw-semibold fs-6 mb-2">Keterangan</label>
-                                    <input type="hidden" name="id_keterangan" id="id_keterangan" class="form-control mb-3 mb-lg-0" required/>
-                                    <input type="text" class="form-control mb-3 mb-lg-0" name="keterangan" required/>
+                                    <input type="hidden" name="id_keterangan" id="id_keterangan"
+                                        class="form-control mb-3 mb-lg-0" required />
+                                    <input type="text" class="form-control mb-3 mb-lg-0" name="keterangan" required />
                                 </div>
                                 <div class="col-12 d-flex justify-content-between mt-6">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
@@ -449,7 +476,7 @@ $(document).ready(function() {
         "columnDefs": [{
             "className": "dt-body-center",
             "targets": [5, 6, 7, 15, 16, 17, 19]
-        },{
+        }, {
             "className": "dt-body-right",
             "targets": [8, 9, 14]
         }],
@@ -475,8 +502,9 @@ $(document).ready(function() {
             },
             "data": function(data) {
                 data.unit = $("#unit").val(),
-                data.status = $("#status").val(),
-                data.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash();?>"
+                    data.status = $("#status").val(),
+                    data.<?=$this->security->get_csrf_token_name();?> =
+                    "<?=$this->security->get_csrf_hash();?>"
             },
             "complete": function(response) {
                 Swal.close();
@@ -486,7 +514,9 @@ $(document).ready(function() {
             }
         }
     });
-    new $.fn.dataTable.FixedColumns(table, { leftColumns: 3});
+    new $.fn.dataTable.FixedColumns(table, {
+        leftColumns: 3
+    });
 });
 
 function filterData() {
@@ -627,7 +657,7 @@ function deletePemasaran(id) {
                 type: "POST",
                 data: {
                     id: id,
-                    <?=$this->security->get_csrf_token_name();?> : "<?=$this->security->get_csrf_hash();?>"
+                    <?=$this->security->get_csrf_token_name();?>: "<?=$this->security->get_csrf_hash();?>"
                 },
                 beforeSend: function() {
                     Swal.fire({
@@ -665,7 +695,7 @@ function setRasio(data) {
         type: "POST",
         data: {
             material_id: material_id,
-            <?=$this->security->get_csrf_token_name();?> : "<?=$this->security->get_csrf_hash();?>"
+            <?=$this->security->get_csrf_token_name();?>: "<?=$this->security->get_csrf_hash();?>"
         },
         beforeSend: function() {
             Swal.fire({
@@ -679,10 +709,12 @@ function setRasio(data) {
         },
         success: function(response) {
             Swal.close();
-            if(response == 0){
-                $(data).closest('tr').find('select[name="rasio[]"]').val('').trigger('change').attr("disabled", true).prop('required', false);
+            if (response == 0) {
+                $(data).closest('tr').find('select[name="rasio[]"]').val('').trigger('change').attr(
+                    "disabled", true).prop('required', false);
             } else {
-                $(data).closest('tr').find('select[name="rasio[]"]').attr("disabled", false).prop('required', true);
+                $(data).closest('tr').find('select[name="rasio[]"]').attr("disabled", false).prop(
+                    'required', true);
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
