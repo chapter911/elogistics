@@ -66,8 +66,7 @@
                                 required="required">
                             <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>"
                                 value="<?=$this->security->get_csrf_hash();?>">
-                            <input type="text" class="form-control" id="email" name="email" autocomplete="off"
-                                role="presentation" autocomplete="new-text" placeholder="Masukkan email Anda"
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email Anda"
                                 autofocus required />
                         </div>
                         <div class="mb-6 form-password-toggle">
