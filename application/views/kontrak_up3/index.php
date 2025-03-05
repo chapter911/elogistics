@@ -580,6 +580,15 @@ var map;
 var loc_text;
 
 $(document).ready(function() {
+    map = L.map('map').setView([-6.1804611, 106.8763308], 19);
+
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    L.Control.geocoder().addTo(map);
+    $('.leaflet-container').css('cursor', 'default');
+
     table_kontrak = $("#table_kontrak").DataTable({
         "scrollX": true,
         "fixedHeader": {
