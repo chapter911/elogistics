@@ -572,6 +572,15 @@ function getMaterialPemasaran(id) {
 }
 
 function updatePemasaran(id, tanggal_sip, rencana_nyala) {
+    if (tanggal_sip == "0000-00-00" || tanggal_sip == null) {
+        $("#btn_update_tanggal_sip").show();
+        $("#btn_update_status").hide();
+        console.log("ini");
+    } else {
+        $("#btn_update_tanggal_sip").hide();
+        $("#btn_update_status").show();
+        console.log("itu");
+    }
     $.ajax({
         url: "<?= base_url() ?>C_Pemasaran/materialPemasaran/" + id,
         type: "GET",
@@ -587,20 +596,12 @@ function updatePemasaran(id, tanggal_sip, rencana_nyala) {
         },
         success: function(d) {
             Swal.close();
-            console.log(d);
             $("#update_material_pemasaran").html(d);
             $("#id_pemasaran").val(id);
             $("#id_sip").val(id);
             $("#id_status").val(id);
             $("#id_rencana_nyala").val(id);
             $("#id_keterangan").val(id);
-            if (tanggal_sip == "0000-00-00" || tanggal_sip == null) {
-                $("#btn_update_tanggal_sip").show();
-                $("#btn_update_status").hide();
-            } else {
-                $("#btn_update_tanggal_sip").hide();
-                $("#btn_update_status").show();
-            }
             $('#update_rencana_nyala').val(rencana_nyala);
             $("#createApp").modal("show");
         }
