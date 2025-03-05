@@ -374,11 +374,11 @@
                                     <input type="date" name="update_tanggal_sip" id="update_tanggal_sip"
                                         class="form-control mb-3 mb-lg-0" placeholder="Tanggal SIP" required />
                                 </div>
-                                <div class="col-12 d-flex justify-content-between mt-6">
+                                <div class="col-12 mt-6" id="btn_update_tanggal_sip">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
                                         <span class="align-middle d-sm-inline-block d-none">Reset</span>
                                     </button>
-                                    <button type="submit" class="btn btn-primary btn-next" id="btn_update_tanggal_sip" style="display: none;">
+                                    <button type="submit" class="btn btn-primary btn-next">
                                         <i class="ti ti-device-floppy ti-xs"></i>
                                         <span class="align-middle d-sm-inline-block d-none me-sm-2">Simpan</span>
                                     </button>
@@ -402,11 +402,11 @@
                                     <label class="fw-semibold fs-6 mb-2" style="color: red;">* Pastikan tanggal SIP di
                                         update terlebih dahulu</label>
                                 </div>
-                                <div class="col-12 d-flex justify-content-between mt-6">
+                                <div class="col-12 mt-6" id="btn_update_status">
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
                                         <span class="align-middle d-sm-inline-block d-none">Reset</span>
                                     </button>
-                                    <button type="submit" class="btn btn-primary btn-next" id="btn_update_status">
+                                    <button type="submit" class="btn btn-primary btn-next">
                                         <i class="ti ti-device-floppy ti-xs"></i>
                                         <span class="align-middle d-sm-inline-block d-none me-sm-2">Simpan</span>
                                     </button>
