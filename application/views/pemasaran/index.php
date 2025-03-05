@@ -593,14 +593,14 @@ function updatePemasaran(id, tanggal_sip, rencana_nyala) {
             $("#id_status").val(id);
             $("#id_rencana_nyala").val(id);
             $("#id_keterangan").val(id);
-            if (tanggal_sip == "0000-00-00") {
+            if (tanggal_sip == "0000-00-00" || tanggal_sip == null) {
                 $("#btn_update_tanggal_sip").show();
                 $("#btn_update_status").hide();
             } else {
                 $("#btn_update_tanggal_sip").hide();
                 $("#btn_update_status").show();
             }
-                $('#update_rencana_nyala').val(rencana_nyala);
+            $('#update_rencana_nyala').val(rencana_nyala);
             $("#createApp").modal("show");
         }
     });
