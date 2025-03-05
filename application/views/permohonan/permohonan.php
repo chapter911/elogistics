@@ -53,8 +53,13 @@
                                 <?php if (!empty(html_escape($d->file_tug))) { ?>
                                 <a href="<?= base_url() . html_escape($d->file_tug_location) . '/' . html_escape($d->file_tug)  ?>.pdf"
                                     class="btn btn-text-danger btn-hover-light-danger btn-sm" target="_blank">
-                                    <i class="fa fa-file-pdf"></i> PDF
-                                    <?php } ?>
+                                    <i class="fa fa-file-pdf"></i> TUG 5
+                                <?php } ?>
+                                <?php if (!empty(html_escape($d->file_surat))) { ?>
+                                <a href="<?= base_url() . html_escape($d->file_surat_location) . '/' . html_escape($d->file_tug)  ?>.pdf"
+                                    class="btn btn-text-danger btn-hover-light-danger btn-sm" target="_blank">
+                                    <i class="fa fa-file-pdf"></i> SURAT
+                                <?php } ?>
                             </td>
                             <td style="text-align: center;">
                                 <button class="btn btn-outline-secondary btn-sm waves-effect waves-light" onclick="alert('Fitur Sedang DiKembangkan')">
@@ -140,6 +145,13 @@
                             <label class="fw-semibold fs-6 mb-2">Dokumen Pendukung TUG 5 (PDF)</label>
                             <input type="file" name="file_tug" id="file_tug" accept=".pdf" class="form-control"
                                 placeholder="File Pendukung TUG" required/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-4">
+                            <label class="fw-semibold fs-6 mb-2">Surat</label>
+                            <input type="file" name="surat" id="surat" accept=".pdf" class="form-control"
+                                placeholder="File Surat"/>
                         </div>
                     </div>
                     <div class="row">

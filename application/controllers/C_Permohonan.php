@@ -152,48 +152,56 @@ class C_Permohonan extends CI_Controller {
             $errornya = $this->upload->display_errors();
             $this->session->set_flashdata('flash_failed', 'Maaf Dokumen yang dipilih tidak sesuai format.' . $errornya);
             redirect('C_Permohonan/Permohonan');
+        }
+
+        $filename_surat = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('surat')) {
+            continue;
+        }
+
+        if(!isset($_POST['volume'])){
+            $this->session->set_flashdata('flash_failed', 'Maaf Tidak Ada Material yang ditambahkan.');
+            redirect('C_Permohonan/Permohonan');
         } else {
-            if(!isset($_POST['volume'])){
-                $this->session->set_flashdata('flash_failed', 'Maaf Tidak Ada Material yang ditambahkan.');
+            $no_pr = $this->input->post('no_pr', true);
+            $cek = $this->M_AllFunction->Where('trn_permohonan_hdr', "no_pr = '$no_pr'");
+            $no_tlsk = $this->M_AllFunction->CustomQuery('SELECT MAX(no_tlsk) + 1 as no_tlsk FROM trn_permohonan_hdr');
+            if(count($cek) == 0) {
+                $data = array(
+                    "no_pr"             => $this->input->post('no_pr', true),
+                    "tanggal_pr"        => $this->input->post('tanggal_pr', true),
+                    "no_tlsk"           => $no_tlsk[0]->no_tlsk,
+                    "basket_id"         => $this->input->post('basket_id', true),
+                    "jenis_anggaran"    => $this->input->post('jenis_anggaran', true),
+                    "no_anggaran"       => $this->input->post('no_anggaran', true),
+                    "pekerjaan"         => $this->input->post('pekerjaan', true),
+                    "request_unit"      => $this->session->userdata("unit_id"),
+                    "status"            => "PERMOHONAN",
+                    "file_surat"        => $filename_surat,
+                    "file_tug"          => $filename,
+                    "file_tug_location" => $directory,
+                    "created_by"        => $this->session->userdata('username'),
+                    "created_date"      => date('Y-m-d H:i:s')
+                );
+
+                $this->M_AllFunction->Insert('trn_permohonan_hdr', $data);
+
+                for($i = 0; $i < count($this->input->post('volume', true)); $i++){
+                    $detail = array(
+                        'no_pr'    => $this->input->post('no_pr', true),
+                        'material' => $this->input->post('material', true)[$i],
+                        'volume'   => $this->input->post('volume', true)[$i],
+                    );
+                    $this->M_AllFunction->Insert('trn_permohonan_dtl', $detail);
+                }
+                $this->sendPermohonan($this->input->post('no_pr', true));
+                $this->session->set_flashdata('flash_succes', 'Permohonan telah dibuat.');
                 redirect('C_Permohonan/Permohonan');
             } else {
-                $no_pr = $this->input->post('no_pr', true);
-                $cek = $this->M_AllFunction->Where('trn_permohonan_hdr', "no_pr = '$no_pr'");
-                $no_tlsk = $this->M_AllFunction->CustomQuery('SELECT MAX(no_tlsk) + 1 as no_tlsk FROM trn_permohonan_hdr');
-                if(count($cek) == 0) {
-                    $data = array(
-                        "no_pr"             => $this->input->post('no_pr', true),
-                        "tanggal_pr"        => $this->input->post('tanggal_pr', true),
-                        "no_tlsk"           => $no_tlsk[0]->no_tlsk,
-                        "basket_id"         => $this->input->post('basket_id', true),
-                        "jenis_anggaran"    => $this->input->post('jenis_anggaran', true),
-                        "no_anggaran"       => $this->input->post('no_anggaran', true),
-                        "pekerjaan"         => $this->input->post('pekerjaan', true),
-                        "request_unit"      => $this->session->userdata("unit_id"),
-                        "status"            => "PERMOHONAN",
-                        "file_tug"          => $filename,
-                        "file_tug_location" => $directory,
-                        "created_by"        => $this->session->userdata('username'),
-                        "created_date"      => date('Y-m-d H:i:s')
-                    );
-
-                    $this->M_AllFunction->Insert('trn_permohonan_hdr', $data);
-
-                    for($i = 0; $i < count($this->input->post('volume', true)); $i++){
-                        $detail = array(
-                            'no_pr'    => $this->input->post('no_pr', true),
-                            'material' => $this->input->post('material', true)[$i],
-                            'volume'   => $this->input->post('volume', true)[$i],
-                        );
-                        $this->M_AllFunction->Insert('trn_permohonan_dtl', $detail);
-                    }
-                    $this->sendPermohonan($this->input->post('no_pr', true));
-                    $this->session->set_flashdata('flash_succes', 'Permohonan telah dibuat.');
-                    redirect('C_Permohonan/Permohonan');
-                } else {
-                    $this->session->set_flashdata('flash_failed', 'Maaf Nomor PR Sudah DiGunakan.');
-                    redirect('C_Permohonan/Permohonan');
-                }
+                $this->session->set_flashdata('flash_failed', 'Maaf Nomor PR Sudah DiGunakan.');
+                redirect('C_Permohonan/Permohonan');
             }
         }
     }
