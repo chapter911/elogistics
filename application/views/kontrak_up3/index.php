@@ -75,7 +75,7 @@
                             <td style="text-align: center;" colspan="12"><b style="color:white"> TOTAL NILAI KONTRAK
                                 </b> </td>
                             <td style="text-align: right; color:white;"> <b id="total_nilai_kontrak">0</b> </td>
-                            <td style="text-align: center;" colspan="11"></td>
+                            <td style="text-align: center;" colspan="12"></td>
                         </tr>
                     </tfoot>
                 </table>
