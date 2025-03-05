@@ -587,6 +587,7 @@ function updatePemasaran(id, tanggal_sip, rencana_nyala) {
         },
         success: function(d) {
             Swal.close();
+            console.log(d);
             $("#update_material_pemasaran").html(d);
             $("#id_pemasaran").val(id);
             $("#id_sip").val(id);
