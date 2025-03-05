@@ -581,14 +581,6 @@ var loc_text;
 
 $(document).ready(function() {
     <?php
-    function check_connection($url) {
-        $connected = @fsockopen(parse_url($url, PHP_URL_HOST), 80); 
-        if ($connected) {
-            fclose($connected);
-            return true;
-        }
-        return false;
-    }
     if (check_connection('https://unpkg.com')) { ?>
     map = L.map('map').setView([-6.1804611, 106.8763308], 19);
 
