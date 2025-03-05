@@ -384,7 +384,7 @@
                                     <button type="reset" class="btn btn-label-secondary btn-prev" disabled>
                                         <span class="align-middle d-sm-inline-block d-none">Reset</span>
                                     </button>
-                                    <button type="submit" class="btn btn-primary btn-next">
+                                    <button type="submit" id="btn_update_status" class="btn btn-primary btn-next">
                                         <i class="ti ti-device-floppy ti-xs"></i>
                                         <span class="align-middle d-sm-inline-block d-none me-sm-2">Simpan</span>
                                     </button>
