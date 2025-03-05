@@ -150,7 +150,7 @@
                     <div class="row">
                         <div class="col mb-4">
                             <label class="fw-semibold fs-6 mb-2">Surat</label>
-                            <input type="file" name="surat" id="surat" accept=".pdf" class="form-control"
+                            <input type="file" name="file_surat" id="file_surat" accept=".pdf" class="form-control"
                                 placeholder="File Surat"/>
                         </div>
                     </div>

@@ -136,16 +136,16 @@ class C_Permohonan extends CI_Controller {
     }
 
     function PermohonanSave(){
-        $filename = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
-        $directory = 'data_uploads/permohonan/';
 
         $config['allowed_types'] = 'pdf';
         $config['remove_spaces'] = TRUE;
         $config['max_size'] = 10000;
-        $config['file_name'] = $filename;
-        $config['upload_path'] = $directory;
+        $config['upload_path'] = 'data_uploads/permohonan/';
 
         $this->load->library('upload', $config);
+
+        $filename = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $config['file_name'] = $filename;
         $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('file_tug')) {
@@ -155,10 +155,13 @@ class C_Permohonan extends CI_Controller {
         }
 
         $filename_surat = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $config['file_name'] = $filename_surat;
         $this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('surat')) {
-            continue;
+        if (!$this->upload->do_upload('file_surat')) {
+            $errornya = $this->upload->display_errors();
+            $this->session->set_flashdata('flash_failed', 'Maaf Dokumen surat yang dipilih tidak sesuai format.' . $errornya);
+            // redirect('C_Permohonan/Permohonan');
         }
 
         if(!isset($_POST['volume'])){
