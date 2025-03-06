@@ -136,11 +136,11 @@ class C_Permohonan extends CI_Controller {
     }
 
     function PermohonanSave(){
-
+        $directory = 'data_uploads/permohonan/';
         $config['allowed_types'] = 'pdf';
         $config['remove_spaces'] = TRUE;
         $config['max_size'] = 10000;
-        $config['upload_path'] = 'data_uploads/permohonan/';
+        $config['upload_path'] = $directory;
 
         $this->load->library('upload', $config);
 
