@@ -159,9 +159,7 @@ class C_Permohonan extends CI_Controller {
         $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('file_surat')) {
-            $errornya = $this->upload->display_errors();
-            $this->session->set_flashdata('flash_failed', 'Maaf Dokumen surat yang dipilih tidak sesuai format.' . $errornya);
-            // redirect('C_Permohonan/Permohonan');
+            $filename_surat = null;
         }
 
         if(!isset($_POST['volume'])){
