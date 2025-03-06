@@ -144,7 +144,7 @@ class C_Permohonan extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        $filename = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $filename = "tug-" . $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
         $config['file_name'] = $filename;
         $this->upload->initialize($config);
 
@@ -154,7 +154,7 @@ class C_Permohonan extends CI_Controller {
             redirect('C_Permohonan/Permohonan');
         }
 
-        $filename_surat = $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $filename_surat = "surat-" . $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
         $config['file_name'] = $filename_surat;
         $this->upload->initialize($config);
 
