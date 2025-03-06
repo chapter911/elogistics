@@ -618,7 +618,8 @@ function detail(no_sipb, form_name, is_selesai){
                 $('#visible_sipb').show();
             } else {
                 $('#visible_sipb').show();
-                $('#btn_simpan').hide();
+                $('#btn_simpan').show();
+                // $('#btn_simpan').hide();
                 // $('#visible_sipb').hide();
             }
             $('#createApp2').modal('show');
