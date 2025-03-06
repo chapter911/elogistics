@@ -321,11 +321,18 @@ class C_Permohonan extends CI_Controller {
             $row[] = "<button type='button' class='btn btn-sm btn-secondary' onclick=\"showMaterial(" . html_escape($h->no_pr) . ")\">MATERIAL</button>";
             $row[] = html_escape($h->pekerjaan);
             $row[] = html_escape($h->is_sto_released) ? "STO TERBIT" : html_escape($h->status);
+            $file = "";
             if (!empty(html_escape($h->file_tug))) {
-                $row[] = "<a href='" . base_url() . html_escape($h->file_tug_location) . '/' . html_escape($h->file_tug) . ".pdf' class='btn btn-text-danger btn-hover-light-danger btn-sm' target='_blank'><i class='fa fa-file-pdf'></i> PDF</a>";
+                $file .= "<a href='" . base_url() . html_escape($h->file_tug_location) . '/' . html_escape($h->file_tug) . ".pdf' class='btn btn-text-danger btn-hover-light-danger btn-sm' target='_blank'><i class='fa fa-file-pdf'></i> TUG</a>";
             } else {
-                $row[] = "";
+                $file .= "";
             }
+            if (!empty(html_escape($h->file_surat))) {
+                $file .= "<a href='" . base_url() . html_escape($h->file_tug_location) . '/' . html_escape($h->file_surat) . ".pdf' class='btn btn-text-danger btn-hover-light-danger btn-sm' target='_blank'><i class='fa fa-file-pdf'></i> SURAT</a>";
+            } else {
+                $file .= "";
+            }
+            $row[] = $file;
             if(html_escape($h->status) == "PERMOHONAN" && $this->session->userdata('edit')){
                 $row[] = "<button type='button' class='btn btn-outline-secondary btn-sm waves-effect waves-light' onclick=\"verifikasiPermohonan(" . html_escape($h->no_pr) . ")\"><i class=\"fa fa-pencil\"></i></button>";
             } else {
