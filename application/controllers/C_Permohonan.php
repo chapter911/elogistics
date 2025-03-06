@@ -187,6 +187,8 @@ class C_Permohonan extends CI_Controller {
                     "created_date"      => date('Y-m-d H:i:s')
                 );
 
+                echo '<pre>'; print_r($data); echo '</pre>';
+                die();
                 $this->M_AllFunction->Insert('trn_permohonan_hdr', $data);
 
                 for($i = 0; $i < count($this->input->post('volume', true)); $i++){
