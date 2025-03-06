@@ -56,7 +56,7 @@
                                     <i class="fa fa-file-pdf"></i> TUG 5
                                 <?php } ?>
                                 <?php if (!empty(html_escape($d->file_surat))) { ?>
-                                <a href="<?= base_url() . html_escape($d->file_tug_location) . '/' . html_escape($d->file_tug)  ?>.pdf"
+                                <a href="<?= base_url() . html_escape($d->file_tug_location) . '/' . html_escape($d->file_surat)  ?>.pdf"
                                     class="btn btn-text-danger btn-hover-light-danger btn-sm" target="_blank">
                                     <i class="fa fa-file-pdf"></i> SURAT
                                 <?php } ?>
