@@ -215,6 +215,8 @@ class C_Permohonan extends CI_Controller {
         $config['max_size'] = 10000;
         $config['file_name'] = $filename_surat;
         $config['upload_path'] = $directory;
+        echo '<pre>'; print_r($config); echo '</pre>';
+        die();
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
