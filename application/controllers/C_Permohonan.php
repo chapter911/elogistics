@@ -207,6 +207,32 @@ class C_Permohonan extends CI_Controller {
         }
     }
 
+    public function update_surat(){
+        $filename_surat = "surat-" . $this->session->userdata('unit_id') . '-' . bin2hex(random_bytes(24));
+        $directory = 'data_uploads/permohonan/';
+        $config['allowed_types'] = 'pdf';
+        $config['remove_spaces'] = TRUE;
+        $config['max_size'] = 10000;
+        $config['file_name'] = $filename_surat;
+        $config['upload_path'] = $directory;
+
+        $this->upload->initialize($config);
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file_surat')) {
+            $errornya = $this->upload->display_errors();
+            $this->session->set_flashdata('flash_failed', 'Maaf Dokumen yang dipilih tidak sesuai format.' . $errornya);
+            redirect('C_Permohonan/Permohonan');
+        }
+
+        $data = array(
+            "file_surat"        => $filename_surat
+        );
+
+        $this->M_AllFunction->Update('trn_permohonan_hdr', $data, "no_pr = '" . $this->input->post('no_pr', true) . "'");
+        redirect('C_Permohonan/Permohonan');
+    }
+
 	public function getMaterialPermohonan(){
         $no_pr = $this->input->post('no_pr', true);
         $query = "SELECT

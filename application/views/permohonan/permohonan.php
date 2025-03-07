@@ -28,6 +28,7 @@
                             <th style="text-align: center; color: white;"> NO STO </th>
                             <th style="text-align: center; color: white;"> STATUS </th>
                             <th style="text-align: center; color: white;"> FILE </th>
+                            <th style="text-align: center; color: white;"> ACTIONS </th>
                             <th style="text-align: center; color: white;"> LACAK </th>
                         </tr>
                     </thead>
@@ -47,7 +48,7 @@
                                 <button class="btn btn-secondary btn-sm w-100" onclick="showMaterial(<?= html_escape($d->no_pr); ?>);"><?= html_escape($d->material); ?></button>
                             </td>
                             <td style="text-align: center;"> <?= html_escape($d->no_sto); ?> </td>
-                            <td style="text-align: center;"> <?= html_escape($d->is_sto_released) ? "STO TERBIT" : html_escape($d->status);; ?>
+                            <td style="text-align: center;"> <?= html_escape($d->is_sto_released) ? "STO TERBIT" : html_escape($d->status); ?>
                             </td>
                             <td style="text-align: center;">
                                 <?php if (!empty(html_escape($d->file_tug))) { ?>
@@ -60,6 +61,14 @@
                                     class="btn btn-text-danger btn-hover-light-danger btn-sm" target="_blank">
                                     <i class="fa fa-file-pdf"></i> SURAT
                                 <?php } ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?php if($d->status == "PERMOHONAN"){ ?>
+                                    <button class="btn btn-outline-secondary btn-sm waves-effect waves-light" onclick="uploadSurat(<?= $d->no_pr; ?>)">
+                                        <i class="fa-solid fa-upload"></i> UPLOAD SURAT
+                                    </button>
+                                <?php } ?>
+                            </td>
                             </td>
                             <td style="text-align: center;">
                                 <button class="btn btn-outline-secondary btn-sm waves-effect waves-light" onclick="alert('Fitur Sedang DiKembangkan')">
@@ -212,6 +221,36 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal_upload_surat" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalCenterTitle">Upload Surat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="form" action="<?= base_url(); ?>C_Permohonan/update_surat" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-4">
+                            <label class="required fw-semibold fs-6 mb-2">File Surat</label>
+                            <input type="hidden" name="no_pr_surat" id="no_pr_surat" class="form-control" required/>
+                            <input type="file" name="file_surat" id="file_surat" class="form-control"
+                                accept=".pdf" placeholder="pdf" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
 var tabledetail;
 
@@ -310,5 +349,10 @@ $('#add_data_form').on('submit', function(e) {
 
 function deleteRow(loc) {
     $(loc).parent().parent().remove();
+}
+
+function uploadSurat(no_pr) {
+    $('#no_pr_surat').val(no_pr);
+    $("#modal_upload_surat").modal('show');
 }
 </script>
