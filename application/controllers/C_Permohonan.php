@@ -216,8 +216,8 @@ class C_Permohonan extends CI_Controller {
         $config['file_name'] = $filename_surat;
         $config['upload_path'] = $directory;
 
-        $this->upload->initialize($config);
         $this->load->library('upload', $config);
+        $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('file_surat')) {
             $errornya = $this->upload->display_errors();
