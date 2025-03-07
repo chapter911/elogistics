@@ -215,8 +215,6 @@ class C_Permohonan extends CI_Controller {
         $config['max_size'] = 10000;
         $config['file_name'] = $filename_surat;
         $config['upload_path'] = $directory;
-        echo '<pre>'; print_r($config); echo '</pre>';
-        die();
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
@@ -231,7 +229,7 @@ class C_Permohonan extends CI_Controller {
             "file_surat"        => $filename_surat
         );
 
-        $this->M_AllFunction->Update('trn_permohonan_hdr', $data, "no_pr = '" . $this->input->post('no_pr', true) . "'");
+        $this->M_AllFunction->Update('trn_permohonan_hdr', $data, "no_pr = '" . $this->input->post('no_pr_surat', true) . "'");
         redirect('C_Permohonan/Permohonan');
     }
 
